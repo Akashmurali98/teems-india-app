@@ -1,0 +1,76 @@
+th {
+  color: #337ab7;
+}
+.form-container {
+  height: 350px;
+  width: 450px;
+  border: 2px solid black;
+  border-radius: 10px;
+  padding: 10px 10px;
+  margin: auto;
+}
+
+h1 {
+  text-align: left;
+  margin: 0;
+}
+
+h5 {
+  text-align: left;
+  margin-left: 2px;
+  margin-top: 0px;
+  margin-bottom: 0px;
+  font-weight: 500;
+}
+
+form {
+  text-align: left;
+  padding: 10px;
+}
+
+.form-container label {
+  font-weight: 600;
+  display: inline-block;
+
+  /* margin-right: 5px; */
+}
+.form-container input[type="password"] {
+  margin-left: 13px;
+  margin-top: 15px;
+  width: 250px;
+  height: 30px;
+  border-radius: 5px;
+}
+.form-container input[type="text"] {
+  margin-top: 15px;
+  width: 250px;
+  height: 30px;
+  border-radius: 5px;
+}
+.form-container input[type="checkbox"] {
+  margin-left: 100px;
+  margin-top: 0px;
+}
+
+button {
+  color: white;
+  background-color: #1a1a1a;
+  border: 0px;
+  border-radius: 5px;
+  padding: 10px 25px;
+  position: relative;
+  left: 150px;
+  margin-top: 20px;
+}
+
+span {
+  text-align: center;
+  margin: auto;
+  color: red;
+  margin-left: 35px;
+}
+
+label {
+  margin-right: 15px;
+  font-weight: 500;
+}

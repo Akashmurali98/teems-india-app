@@ -1,16 +1,25 @@
 import React, { useEffect, useState } from "react";
+<<<<<<< Updated upstream
 import { Component } from "react";
 import "../../Component css/View.css";
+=======
+import "../../assets/Css/View.css";
+
+>>>>>>> Stashed changes
 import { useParams } from "react-router-dom";
 import axios from "axios";
-import Header from "../Header";
+import Header from "../../Shared/Header";
 // import Swal from "sweetalert2";
 import { useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
+import { selectViewData } from "../../store/Role/Reducers";
 
 const View = () => {
   const selectedId = useParams();
   const id = selectedId.id;
+  const viewData = useSelector(selectViewData);
   const navigate = useNavigate();
+<<<<<<< Updated upstream
   // console.log(id);
   const [selected, setSelected] = useState([]);
   // console.log(id);
@@ -52,24 +61,35 @@ const View = () => {
       .catch((error) => {
         console.error(error);
       });
+=======
+
+  const handleback = () => {
+    navigate(-1);
+>>>>>>> Stashed changes
   };
 
   return (
     <>
+<<<<<<< Updated upstream
       
       <button className="update">Update</button>
       <button className="delete" onClick={() => handleDelete(selected.id)}>
         Delete
+=======
+      <button className="update" onClick={() => handleback()}>
+        back
+>>>>>>> Stashed changes
       </button>
+
       <table className="view">
         <tbody>
           <tr>
             <th>Roles</th>
-            <td>{selected.name}</td>
+            <td>{viewData.name}</td>
           </tr>
           <tr>
             <th>Employee Id</th>
-            <td>{selected.id}</td>
+            <td>{viewData.id}</td>
           </tr>
         </tbody>
       </table>
