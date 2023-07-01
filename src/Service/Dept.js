@@ -1,45 +1,21 @@
-import axios from "axios";
 import Swal from "sweetalert2";
+import axios from "axios";
+
 import { loaderOpening } from "../store/main/Reducers";
 
-class RolesApi {
+class DeptApi {
   constructor(dispatch) {
     this.dispatch = dispatch;
   }
-
-  listRole(data) {
-    const token = sessionStorage.getItem("token");
-    return new Promise((resolve) => {
-      axios
-        .get("dev/api/role", {
-          headers: {
-            Accept: "*/*",
-            Authorization: `Bearer ${token}`,
-          },
-        })
-        .then((response) => {
-          console.log(response.data.data);
-          resolve(response.data.data);
-          // resolve(response.data.data);
-        })
-        .catch((error) => {
-          console.log(error);
-        });
-    });
-  }
-
-  createRole(data) {
+  createDept(data) {
     const token = sessionStorage.getItem("token");
     this.dispatch(loaderOpening(true));
-
-    console.log(3);
-
     return new Promise((resolve) => {
       axios
         .post(
-          `/dev/api/role`,
+          `/dev/api/department`,
           {
-            name: data.roles,
+            name: data.department,
           },
           {
             headers: {
@@ -55,19 +31,38 @@ class RolesApi {
           },
           (error) => {
             console.log(error);
-            this.dispatch(loaderOpening(false));
           }
         );
     });
   }
 
-  viewRole(selectedId) {
+  listDept(data) {
     const token = sessionStorage.getItem("token");
     this.dispatch(loaderOpening(true));
-
     return new Promise((resolve) => {
       axios
-        .get(`/dev/api/role/${selectedId}`, {
+        .get("dev/api/department", {
+          headers: {
+            Accept: "*/*",
+            Authorization: `Bearer ${token}`,
+          },
+        })
+        .then((response) => {
+          resolve(response.data.data);
+          this.dispatch(loaderOpening(false));
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    });
+  }
+
+  viewDept(selectedId) {
+    const token = sessionStorage.getItem("token");
+    this.dispatch(loaderOpening(true));
+    return new Promise((resolve) => {
+      axios
+        .get(`/dev/api/department/${selectedId}`, {
           headers: {
             Accept: "*/*",
             Authorization: `Bearer ${token}`,
@@ -75,19 +70,17 @@ class RolesApi {
         })
         .then(
           (response) => {
-            console.log(response);
             resolve(response.data.data);
             this.dispatch(loaderOpening(false));
           },
           (error) => {
             console.log(error);
-            this.dispatch(loaderOpening(false));
           }
         );
     });
   }
 
-  deleteRole(selectedId) {
+  deleteDept(selectedId) {
     const token = sessionStorage.getItem("token");
     this.dispatch(loaderOpening(true));
     return new Promise((resolve) => {
@@ -101,19 +94,17 @@ class RolesApi {
         confirmButtonText: "Yes   ",
       }).then((result) => {
         if (result.isConfirmed) {
-          const token = sessionStorage.getItem("token");
           axios
-            .delete(`dev/api/role/${selectedId}`, {
+            .delete(`dev/api/department/${selectedId}`, {
               headers: {
                 Accept: "*/*",
                 Authorization: `Bearer ${token}`,
               },
             })
             .then((response) => {
-              console.log(response);
               resolve(selectedId);
               Swal.fire("Deleted!", "The role has been deleted.", "success");
-              this.dispatch(loaderOpening(false));
+              this.dispatch(loaderOpening(true));
             })
             .catch((error) => {
               console.error(error);
@@ -122,7 +113,6 @@ class RolesApi {
                 "An error occurred while deleting the role.",
                 "error"
               );
-              this.dispatch(loaderOpening(false));
             });
         }
       });
@@ -130,4 +120,4 @@ class RolesApi {
   }
 }
 
-export default RolesApi;
+export default DeptApi;

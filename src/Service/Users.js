@@ -1,6 +1,4 @@
 import axios from "axios";
-import Swal from "sweetalert2";
-import { loaderOpening } from "../store/main/Reducers";
 
 class UsersApi {
   constructor(dispatch) {
@@ -18,7 +16,6 @@ class UsersApi {
           },
         })
         .then((response) => {
-          console.log(response.data.data);
           resolve(response.data.data);
         })
         .catch((error) => {

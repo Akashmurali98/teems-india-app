@@ -1,16 +1,12 @@
-import React, { useEffect } from "react";
-import { Component } from "react";
-import { useForm } from "react-hook-form";
-import "../../assets/Css/CreateDept.css";
-import { useNavigate } from "react-router-dom";
-import { useParams } from "react-router-dom";
 import { useDispatch } from "react-redux";
+import { useParams } from "react-router-dom";
+import { useForm } from "react-hook-form";
+
+import "../../assets/Css/CreateDept.css";
 import { createdept } from "../../store/Department/action";
 
 const CreateDept = () => {
   const selectedId = useParams();
-  const id = selectedId.id;
-  const navigate = useNavigate();
   const dispatch = useDispatch();
   const {
     handleSubmit,
@@ -19,7 +15,6 @@ const CreateDept = () => {
   } = useForm();
 
   const onSubmit = (data) => {
-    const token = sessionStorage.getItem("token");
     dispatch(createdept(data));
   };
 
@@ -31,11 +26,14 @@ const CreateDept = () => {
         <input
           type="text"
           {...register("department", {
-            pattern: /^[A-Za-z]+$/i,
-            required: true,
+            required: "Enter the name",
+            pattern: {
+              value: /^[A-Za-z]+$/,
+              message: "Alphabets only required",
+            },
           })}
         ></input>
-        {errors.roles && <span>Enter the letters only</span>}
+        {errors.roles && <span>{errors.roles?.message}</span>}
         <button className="createDept-btn" type="submit">
           Create Department
         </button>

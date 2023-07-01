@@ -1,19 +1,13 @@
-import axios from "axios";
-import React, { useEffect, useState } from "react";
-<<<<<<< Updated upstream
-import "../../Component css/RolesList.css";
-import Header from "../Header";
-=======
-import "../../assets/Css/RolesList.css";
->>>>>>> Stashed changes
-import { Link } from "react-router-dom";
-import view from "../../assets/Images/visibility.png";
-import edit from "../../assets/Images/create.png";
-import deleted from "../../assets/Images//delete.png";
-import { useParams } from "react-router-dom";
-import { useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-// import { Outlet } from "react-router-dom";
+import { useParams } from "react-router-dom";
+import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import axios from "axios";
+
+import React, { useEffect, useState } from "react";
+import "../../assets/Css/RolesList.css";
+import view from "../../assets/Images/visibility.png";
+import deleted from "../../assets/Images//delete.png";
 import { selectFormData } from "../../store/Role/Reducers";
 import { deleteRole, listRole, viewRole } from "../../store/Role/actions";
 
@@ -24,28 +18,8 @@ const RolesList = () => {
   const listData = useSelector(selectFormData);
   const dispatch = useDispatch();
   useEffect(() => {
-<<<<<<< Updated upstream
-    const token = sessionStorage.getItem("token");
-    // console.log(token);
-    axios
-      .get("dev/api/role", {
-        headers: {
-          Accept: "*/*",
-          Authorization: `Bearer ${token}`,
-        },
-      })
-      .then((response) => {
-        // console.log(response);
-        setData(response.data.data);
-      })
-      .catch((error) => {
-        consol/e.error(error);
-      });
-  }, [data]);
-=======
     dispatch(listRole(data));
   }, []);
->>>>>>> Stashed changes
 
   const handleView = (selectedId) => {
     navigate(`viewRole/${selectedId}`);

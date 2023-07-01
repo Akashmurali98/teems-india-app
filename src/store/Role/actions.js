@@ -42,7 +42,6 @@ export const viewRole = (data) => (dispatch) => {
     .viewRole(data)
     .then((value) => {
       dispatch(viewrole(value));
-      console.log(value, "ViewRole");
     })
     .catch((error) => {
       console.error(error);

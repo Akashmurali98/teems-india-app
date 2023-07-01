@@ -1,17 +1,42 @@
 import axios from "axios";
 import Swal from "sweetalert2";
 
-class DeptApi {
-  createDept(data) {
-    console.log(data);
+import { loaderOpening } from "../store/main/Reducers";
+
+class RolesApi {
+  constructor(dispatch) {
+    this.dispatch = dispatch;
+  }
+
+  listRole(data) {
     const token = sessionStorage.getItem("token");
+    return new Promise((resolve) => {
+      axios
+        .get("dev/api/role", {
+          headers: {
+            Accept: "*/*",
+            Authorization: `Bearer ${token}`,
+          },
+        })
+        .then((response) => {
+          resolve(response.data.data);
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    });
+  }
+
+  createRole(data) {
+    const token = sessionStorage.getItem("token");
+    this.dispatch(loaderOpening(true));
 
     return new Promise((resolve) => {
       axios
         .post(
-          `/dev/api/department`,
+          `/dev/api/role`,
           {
-            name: data.department,
+            name: data.roles,
           },
           {
             headers: {
@@ -23,43 +48,23 @@ class DeptApi {
         .then(
           (response) => {
             resolve(response.data.data);
-            console.log(response);
-            // navigate("/departmentList");
+            this.dispatch(loaderOpening(false));
           },
           (error) => {
             console.log(error);
+            this.dispatch(loaderOpening(false));
           }
         );
     });
   }
 
-  listDept(data) {
+  viewRole(selectedId) {
     const token = sessionStorage.getItem("token");
-    return new Promise((resolve) => {
-      axios
-        .get("dev/api/department", {
-          headers: {
-            Accept: "*/*",
-            Authorization: `Bearer ${token}`,
-          },
-        })
-        .then((response) => {
-          console.log(response.data.data);
-          resolve(response.data.data);
-          // resolve(response.data.data);
-        })
-        .catch((error) => {
-          console.log(error);
-        });
-    });
-  }
-
-  viewDept(selectedId) {
-    const token = sessionStorage.getItem("token");
+    this.dispatch(loaderOpening(true));
 
     return new Promise((resolve) => {
       axios
-        .get(`/dev/api/department/${selectedId}`, {
+        .get(`/dev/api/role/${selectedId}`, {
           headers: {
             Accept: "*/*",
             Authorization: `Bearer ${token}`,
@@ -67,18 +72,21 @@ class DeptApi {
         })
         .then(
           (response) => {
-            console.log(response);
             resolve(response.data.data);
+            this.dispatch(loaderOpening(false));
           },
           (error) => {
             console.log(error);
+            this.dispatch(loaderOpening(false));
           }
         );
     });
   }
 
-  deleteDept(selectedId) {
+  deleteRole(selectedId) {
     const token = sessionStorage.getItem("token");
+    this.dispatch(loaderOpening(true));
+    
     return new Promise((resolve) => {
       Swal.fire({
         title: "Are you sure?",
@@ -90,17 +98,18 @@ class DeptApi {
         confirmButtonText: "Yes   ",
       }).then((result) => {
         if (result.isConfirmed) {
+          const token = sessionStorage.getItem("token");
           axios
-            .delete(`dev/api/department/${selectedId}`, {
+            .delete(`dev/api/role/${selectedId}`, {
               headers: {
                 Accept: "*/*",
                 Authorization: `Bearer ${token}`,
               },
             })
             .then((response) => {
-              console.log(response);
               resolve(selectedId);
               Swal.fire("Deleted!", "The role has been deleted.", "success");
+              this.dispatch(loaderOpening(false));
             })
             .catch((error) => {
               console.error(error);
@@ -109,6 +118,7 @@ class DeptApi {
                 "An error occurred while deleting the role.",
                 "error"
               );
+              this.dispatch(loaderOpening(false));
             });
         }
       });
@@ -116,4 +126,4 @@ class DeptApi {
   }
 }
 
-export default DeptApi;
+export default RolesApi;

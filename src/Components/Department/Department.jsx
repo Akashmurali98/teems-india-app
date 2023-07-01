@@ -1,24 +1,18 @@
+import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
+
 import React, { useEffect, useState } from "react";
-import axios from "axios";
 import "../../assets/Css/DepartmentList.css";
 import view from "../../assets/Images/visibility.png";
-import edit from "../../assets/Images/create.png";
 import deleted from "../../assets/Images/delete.png";
-import { Link } from "react-router-dom";
-import { useParams } from "react-router-dom";
-import { useNavigate } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
 import { deletedept, listdept } from "../../store/Department/action";
 import { selectFormData } from "../../store/Department/Reducers";
-// import listDe
 
 const DepartmentList = () => {
-  const [data, setData] = useState([]);
-  const id = useParams;
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const listData = useSelector(selectFormData);
-  // console.log(listData)
   useEffect(() => {
     dispatch(listdept());
   }, []);
@@ -28,8 +22,6 @@ const DepartmentList = () => {
   };
 
   const handleView = (selectedId) => {
-    // dispatch(viewdept(selectedId));
-    // const id = selectedId;
     navigate(`viewDept/${selectedId}`);
   };
 
@@ -46,11 +38,21 @@ const DepartmentList = () => {
           <th>Id</th>
           <th>Actions</th>
         </thead>
+        <tr>
+          <td>
+            <input type="text"></input>
+          </td>
+          <td>
+            <input type="text"></input>
+          </td>
+          <td>
+            <input type="text"></input>
+          </td>
+        </tr>
         {listData.map((item, index) => (
           <tbody key={index}>
             <tr>
               <td>{index + 1}</td>
-
               <td>{item.name}</td>
               <td>{item.id}</td>
               <td>

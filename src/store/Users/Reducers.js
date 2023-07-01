@@ -16,7 +16,7 @@ const usersSlice = createSlice({
   },
 });
 
-export const { listusers } = formSlice.actions;
+export const { listusers } = usersSlice.actions;
 
-export const selectUsersData = (state) => state.role.listusers;
+export const selectUsersData = (state) => state.user.usersData;
 export default usersSlice.reducer;

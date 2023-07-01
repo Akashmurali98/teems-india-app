@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-// import {}
+
 const initialState = {
   loader: false,
 };
@@ -10,7 +10,6 @@ const statusSlice = createSlice({
   reducers: {
     loaderOpening: (state, action) => {
       state.loader = action.payload;
-      console.log("reducer", state.loader);
     },
   },
 });

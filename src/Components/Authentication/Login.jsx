@@ -1,48 +1,35 @@
-import React from "react";
 import { useForm } from "react-hook-form";
-import axios from "axios";
-import { useEffect } from "react";
-import "../../assets/Css/Login.css";
+import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
+
+import React, { useEffect } from "react";
+import "../../assets/Css/Login.css";
+import { authentication } from "../../store/Login/actions";
 
 const Login = () => {
   const {
     handleSubmit,
     register,
     formState: { errors },
-  } = useForm();
+  } = useForm("onTouched");
+
+  const dispatch = useDispatch();
   const navigate = useNavigate();
 
   const onSubmit = (data) => {
-    axios
-      .post(
-        "/dev/api/auth/login",
-        {
-          username: data.username,
-          password: data.password,
-        },
-        {
-          headers: {
-            Accept: "*/*",
-          },
-        }
-      )
-      .then(
-        (response) => {
-          console.log(response);
-          const token = response.data.data.token;
-          sessionStorage.setItem("token", token);
+    dispatch(authentication(data))
+      .then((isTokenAvailable) => {
+        if (isTokenAvailable) {
           navigate("/myapplication");
-        },
-        (error) => {
-          console.log(error);
         }
-      );
+      })
+      .catch((error) => {
+        console.error(error);
+      });
   };
 
   return (
     <>
-      {/* <Headers /> */}
       <div className="form-container">
         <h1>Login</h1>
         <h5>Please fill out the following fields to login:</h5>
@@ -50,10 +37,16 @@ const Login = () => {
           <label>Username </label>
           <input
             type="text"
-            {...register("username", { required: true })}
+            {...register("username", {
+              required: "Enter the name",
+              pattern: {
+                value: /^[A-Za-z]+$/,
+                message: "Alphabets only required",
+              },
+            })}
           ></input>
           <br />
-          {errors.username && <span>This field is required</span>}
+          {errors.username && <span>{errors.username?.message}</span>}
 
           <br />
           <label>Password </label>
@@ -75,11 +68,6 @@ const Login = () => {
       </div>
     </>
   );
-};
-
-const checkUserAuthentication = () => {
-  const token = sessionStorage.getItem("token");
-  return !!token;
 };
 
 export default Login;

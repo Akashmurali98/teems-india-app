@@ -1,8 +1,8 @@
-import DeptApi from "../../Service/Dept.jsx";
-import { createDept, deleteDept, viewDept, listDept } from "./Reducers.jsx";
+import DeptApi from "../../Service/Dept.js";
+import { createDept, deleteDept, viewDept, listDept } from "./Reducers.js";
 
 export const listdept = (data) => (dispatch) => {
-  const deptApiObj = new DeptApi();
+  const deptApiObj = new DeptApi(dispatch);
   deptApiObj
     .listDept()
     .then((value) => {
@@ -14,28 +14,21 @@ export const listdept = (data) => (dispatch) => {
 };
 
 export const createdept = (data) => (dispatch) => {
-  console.log("create role");
-  console.log(data, "dataaaaa");
-  const rolesApiObj = new DeptApi();
+  const rolesApiObj = new DeptApi(dispatch);
   rolesApiObj.createDept(data).then((value) => {
-    console.log(value);
     dispatch(createDept(value));
   });
 };
 
 export const deletedept = (data) => (dispatch) => {
-  console.log("create role");
-  console.log(data, "dataaaaa");
-  const deptApiObj = new DeptApi();
+  const deptApiObj = new DeptApi(dispatch);
   deptApiObj.deleteDept(data).then((value) => {
-    console.log("deletedept", value);
     dispatch(deleteDept(value));
   });
 };
 
 export const viewdept = (data) => (dispatch) => {
-  console.log(`${data} Akash`);
-  const deptApiObj = new DeptApi();
+  const deptApiObj = new DeptApi(dispatch);
   deptApiObj
     .viewDept(data)
     .then((value) => {

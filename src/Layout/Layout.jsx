@@ -1,33 +1,35 @@
-import React from "react";
-import Header from "../Shared/Header";
+import { useSelector } from "react-redux";
+import { Provider } from "react-redux";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
+
 import Login from "../Components/Authentication/Login";
 import PrivateRoutes from "../PrivateRoute";
 import Myapplication from "../Components/Myapplication";
 import RolesList from "../Components/Roles/RolesList";
 import CreateRole from "../Components/Roles/Create";
+import Header from "../Shared/Header";
 import View from "../Components/Roles/View";
 import CreateDept from "../Components/Department/CreateDept";
 import ViewDept from "../Components/Department/ViewDept";
 import Loader from "../Shared/Loader";
-import { Provider } from "react-redux";
-import store from "../store/store.jsx";
-import { useEffect, useState } from "react";
+import store from "../store/store.js";
+import {  useState } from "react";
 import { selectStatus } from "../store/main/Reducers";
-import { useSelector } from "react-redux";
 import DepartmentList from "../Components/Department/Department";
 import UsersList from "../Components/Users/UsersList";
 import CreateUsers from "../Components/Users/Create";
 import UsersView from "../Components/Users/View";
+import React from "react";
 
 const Layout = () => {
   const [status, setStatus] = useState(false);
-  useEffect(() => {
-    const token = sessionStorage.getItem("token");
-    setStatus(token ? true : false);
-  });
+  // useEffect(() => {
+  //   const token = sessionStorage.getItem("token");
+  //   console.log(token);
+  //   setStatus(token ? true : false);
+  // });
   const loaderStatus = useSelector(selectStatus);
-  console.log(loaderStatus);
+
   return (
     <>
       <BrowserRouter>
