@@ -26,8 +26,6 @@ class LoginApi {
         .then((response) => {
           const token = response.data.data.token;
           sessionStorage.setItem("token", token);
-          this.dispatch(setLoader(false));
-
           resolve(token);
         })
         .catch((error) => {

@@ -3,11 +3,12 @@ import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import React, { useEffect } from "react";
 
-import { viewdept as viewDept  } from "../../store/Department/action";
+import { viewdept as viewDept } from "../../store/Department/action";
 import { selectViewData } from "../../store/Department/Reducers";
+import "../../Css/viewDept.css";
 
 const ViewDept = () => {
-  
+
   const selectedId = useParams();
   const id = selectedId.id;
   const dispatch = useDispatch();
@@ -20,7 +21,7 @@ const ViewDept = () => {
 
   return (
     <>
-      <button className="update" onClick={() => navigate(-1)}>
+      <button className="back-btn" onClick={() => navigate(-1)}>
         back
       </button>
       <table>

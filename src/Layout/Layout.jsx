@@ -1,12 +1,10 @@
-import { useSelector } from "react-redux";
-import { Provider } from "react-redux";
+import { Provider, useSelector } from "react-redux";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import React, { useState } from "react";
 
 import Login from "../Components/Authentication/Login";
 import PrivateRoutes from "../PrivateRoute";
-import Myapplication from "../Components/Myapplication";
-import RolesList from "../Components/Roles/RolesList";
+import RoleList from "../Components/Roles/RolesList";
 import CreateRole from "../Components/Roles/Create";
 import Header from "../Shared/Header";
 import View from "../Components/Roles/View";
@@ -16,9 +14,9 @@ import Loader from "../Shared/Loader";
 import store from "../store/store.js";
 import { selectStatus } from "../store/main/Reducers";
 import DepartmentList from "../Components/Department/Department";
-import UsersList from "../Components/Users/UsersList";
-import CreateUsers from "../Components/Users/Create";
-import UsersView from "../Components/Users/View";
+import UserList from "../Components/Users/UsersList";
+import CreateUser from "../Components/Users/Create";
+import UserView from "../Components/Users/View";
 
 const Layout = () => {
   const [status, setStatus] = useState(false);
@@ -33,22 +31,21 @@ const Layout = () => {
           <Routes>
             <Route path="/" element={<Login />} />
             <Route element={<PrivateRoutes />}>
-              <Route path="/myapplication" element={<Myapplication />} />
-              <Route path="/rolesList" element={<RolesList />} />
-              <Route path="/rolesList/createRole" element={<CreateRole />} />
-              <Route path="/rolesList/viewRole/:id" element={<View />} />
-              <Route path="/departmentList" element={<DepartmentList />} />
+              <Route path="/rolelist" element={<RoleList />} />
+              <Route path="/rolelist/createrole" element={<CreateRole />} />
+              <Route path="/rolelist/viewrole/:id" element={<View />} />
+              <Route path="/departmentlist" element={<DepartmentList />} />
               <Route
-                path="/departmentList/createDept"
+                path="/departmentlist/createdept"
                 element={<CreateDept />}
               />
               <Route
-                path="/departmentList/viewDept/:id"
+                path="/departmentlist/viewdept/:id"
                 element={<ViewDept />}
               />
-              <Route path="/usersList" element={<UsersList />} />
-              <Route path="/usersList/create" element={<CreateUsers />} />
-              <Route path="/usersList/view" element={<UsersView />} />
+              <Route path="/userlist" element={<UserList />} />
+              <Route path="/userlist/create" element={<CreateUser />} />
+              <Route path="/userlist/view" element={<UserView />} />
             </Route>
           </Routes>
         </Provider>

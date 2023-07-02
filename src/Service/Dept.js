@@ -27,12 +27,14 @@ class DeptApi {
         .then(
           (response) => {
             resolve(response.data.data);
-            this.dispatch(setLoader(false));
           },
           (error) => {
             console.log(error);
           }
-        );
+        )
+        .finally(() => {
+          this.dispatch(setLoader(false));
+        });
     });
   }
 
@@ -49,7 +51,6 @@ class DeptApi {
         })
         .then((response) => {
           resolve(response.data.data);
-          this.dispatch(setLoader(false));
         })
         .catch((error) => {
           console.log(error);
@@ -74,7 +75,6 @@ class DeptApi {
         .then(
           (response) => {
             resolve(response.data.data);
-            this.dispatch(setLoader(false));
           },
           (error) => {
             console.log(error);
@@ -88,7 +88,6 @@ class DeptApi {
 
   deleteDept(selectedId) {
     const token = sessionStorage.getItem("token");
-    this.dispatch(setLoader(true));
     return new Promise((resolve) => {
       Swal.fire({
         title: "Are you sure?",
@@ -110,7 +109,6 @@ class DeptApi {
             .then((response) => {
               resolve(selectedId);
               Swal.fire("Deleted!", "The role has been deleted.", "success");
-              this.dispatch(setLoader(true));
             })
             .catch((error) => {
               console.error(error);
@@ -119,12 +117,7 @@ class DeptApi {
                 "An error occurred while deleting the role.",
                 "error"
               );
-            })
-            .finally(() => {
-              this.dispatch(setLoader(false));
             });
-        } else {
-          this.dispatch(setLoader(false));
         }
       });
     });

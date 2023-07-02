@@ -2,7 +2,7 @@ import { useForm } from "react-hook-form";
 import React from "react";
 
 
-const CreateUsers = () => {
+const CreateUser = () => {
   const {
     handleSubmit,
     register,
@@ -61,4 +61,4 @@ const CreateUsers = () => {
     </>
   );
 };
-export default CreateUsers;
+export default CreateUser;

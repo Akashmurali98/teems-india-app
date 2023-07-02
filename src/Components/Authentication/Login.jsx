@@ -20,7 +20,7 @@ const Login = () => {
     dispatch(authentication(data))
       .then((isTokenAvailable) => {
         if (isTokenAvailable) {
-          navigate("/myapplication");
+          navigate("/rolelist");
         }
       })
       .catch((error) => {

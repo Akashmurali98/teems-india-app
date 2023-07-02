@@ -9,25 +9,26 @@ const formSlice = createSlice({
   name: "role",
   initialState,
   reducers: {
-    createdrole: (state, action) => {
+    createRole: (state, action) => {
       state.roleData.push(action.payload);
     },
-    deleterole: (state, action) => {
+    deleteRole: (state, action) => {
       const idToDelete = action.payload;
-      state.roleData = state.roleData.filter((item) => item.id !== idToDelete);
+      const index = state.roleData.findIndex((item) => item.id == idToDelete);
+      state.roleData.splice(index, 1);
     },
-    viewrole: (state, action) => {
+    viewRole: (state, action) => {
       const idToView = action.payload;
       state.viewData = idToView;
     },
-    listrole: (state, action) => {
+    listRole: (state, action) => {
       const data = action.payload;
       state.roleData = data;
     },
   },
 });
 
-export const { createdrole, deleterole, viewrole, listrole } =
+export const { createRole, deleteRole, viewRole, listRole } =
   formSlice.actions;
 export const selectFormData = (state) => state.role.roleData;
 export const selectViewData = (state) => state.role.viewData;

@@ -3,10 +3,9 @@ import { useForm } from "react-hook-form";
 import React from "react";
 
 import "../../assets/Css/CreateDept.css";
-import { createdept as  createDept} from "../../store/Department/action";
+import { createdept as createDept } from "../../store/Department/action";
 
 const CreateDept = () => {
-
   const dispatch = useDispatch();
 
   const {
@@ -36,7 +35,7 @@ const CreateDept = () => {
         ></input>
         {errors.roles && <span>{errors.roles?.message}</span>}
         <button className="createDept-btn" type="submit">
-          Create Department
+          Create 
         </button>
       </form>
     </>

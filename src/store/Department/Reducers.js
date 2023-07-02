@@ -14,7 +14,8 @@ const deptSlice = createSlice({
     },
     deleteDept: (state, action) => {
       const idToDelete = action.payload;
-      state.deptData = state.deptData.filter((item) => item.id !== idToDelete);
+      const index = state.deptData.findIndex((item) => item.id == idToDelete);
+      state.deptData.splice(index, 1);
     },
     viewDept: (state, action) => {
       const idToView = action.payload;

@@ -2,8 +2,8 @@ import { useForm } from "react-hook-form";
 import { useDispatch } from "react-redux";
 import React from "react";
 
+import { createrole as createRole } from "../../store/Role/actions";
 import "../../assets/Css/Create.css";
-import { createRole } from "../../store/Role/actions";
 
 const CreateRole = () => {
   const dispatch = useDispatch();
@@ -20,7 +20,7 @@ const CreateRole = () => {
 
   return (
     <>
-      <h2>Create Roles</h2>
+      <h2>Create </h2>
       <form className="createRole">
         <label>Roles</label>
         <input

@@ -1,47 +1,48 @@
 import RolesApi from "../../Service/Roles";
-import { createdrole, deleterole, viewrole, listrole } from "./Reducers";
+import { createRole, deleteRole, viewRole, listRole } from "./Reducers";
 
-export const listRole = (data) => (dispatch) => {
+export const listrole = (data) => (dispatch) => {
   const rolesApiObj = new RolesApi(dispatch);
   rolesApiObj
-    .listRole().then((value) => {
-      dispatch(listrole(value));
+    .listRole()
+    .then((value) => {
+      dispatch(listRole(value));
     })
     .catch((error) => {
       console.error(error);
     });
 };
 
-export const createRole = (data) => (dispatch) => {
+export const createrole = (data) => (dispatch) => {
   const rolesApiObj = new RolesApi(dispatch);
   rolesApiObj
     .createRole(data)
     .then((value) => {
-      dispatch(createdrole(value));
+      dispatch(createRole(value));
     })
     .catch((error) => {
       console.error(error);
     });
 };
 
-export const deleteRole = (data) => (dispatch) => {
+export const deleterole = (data) => (dispatch) => {
   const rolesApiObj = new RolesApi(dispatch);
   rolesApiObj
     .deleteRole(data)
     .then((value) => {
-      dispatch(deleterole(value));
+      dispatch(deleteRole(value));
     })
     .catch((error) => {
       console.error(error);
     });
 };
 
-export const viewRole = (data) => (dispatch) => {
+export const viewrole = (data) => (dispatch) => {
   const rolesApiObj = new RolesApi(dispatch);
   rolesApiObj
     .viewRole(data)
     .then((value) => {
-      dispatch(viewrole(value));
+      dispatch(viewRole(value));
     })
     .catch((error) => {
       console.error(error);

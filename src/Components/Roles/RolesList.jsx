@@ -1,32 +1,25 @@
 import { useSelector, useDispatch } from "react-redux";
-import { Link } from "react-router-dom";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import React, { useEffect, useState } from "react";
 
-import "../../assets/Css/RolesList.css";
 import view from "../../assets/Images/visibility.png";
 import deleted from "../../assets/Images//delete.png";
 import { selectFormData } from "../../store/Role/Reducers";
-import { deleteRole, listRole } from "../../store/Role/actions";
+import {
+  deleterole as deleteRole,
+  listrole as listRole,
+} from "../../store/Role/actions";
+import "../../assets/Css/RolesList.css";
 
-const RolesList = () => {
-  
+const RoleList = () => {
   const [data, setData] = useState([]);
   const navigate = useNavigate();
   const listData = useSelector(selectFormData);
   const dispatch = useDispatch();
-  
+
   useEffect(() => {
     dispatch(listRole(data));
   }, []);
-
-  const handleView = (selectedId) => {
-    navigate(`viewRole/${selectedId}`);
-  };
-
-  const handleDelete = (selectedId) => {
-    dispatch(deleteRole(selectedId));
-  };
 
   return (
     <>
@@ -34,8 +27,8 @@ const RolesList = () => {
       <table className="roleList">
         <caption>
           {" "}
-          <Link to="/rolesList/createRole">
-            <button className="create-roleList">Create Role</button>
+          <Link to="/rolelist/createrole">
+            <button className="create-roleList">Create</button>
           </Link>
         </caption>
         <thead>
@@ -64,8 +57,14 @@ const RolesList = () => {
               <td>{item.name}</td>
               <td>{item.id}</td>
               <td>
-                <img src={view} onClick={() => handleView(item.id)}></img>
-                <img src={deleted} onClick={() => handleDelete(item.id)}></img>
+                <img
+                  src={view}
+                  onClick={() => navigate(`viewrole/${item.id}`)}
+                ></img>
+                <img
+                  src={deleted}
+                  onClick={() => dispatch(deleteRole(item.id))}
+                ></img>
               </td>
             </tr>
           ))}
@@ -75,4 +74,4 @@ const RolesList = () => {
   );
 };
 
-export default RolesList;
+export default RoleList;

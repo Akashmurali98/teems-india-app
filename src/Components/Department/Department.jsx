@@ -1,9 +1,7 @@
 import { useDispatch, useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
-import { Link } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import React, { useEffect } from "react";
 
-import "../../assets/Css/DepartmentList.css";
 import view from "../../assets/Images/visibility.png";
 import deleted from "../../assets/Images/delete.png";
 import {
@@ -11,29 +9,22 @@ import {
   listdept as listDept,
 } from "../../store/Department/action";
 import { selectFormData } from "../../store/Department/Reducers";
+import "../../Css/DeptList.css";
 
 const DepartmentList = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const listData = useSelector(selectFormData);
-  
+
   useEffect(() => {
     dispatch(listDept());
   }, []);
 
-  const handleDelete = (selectedId) => {
-    dispatch(deleteDept(selectedId));
-  };
-
-  const handleView = (selectedId) => {
-    navigate(`viewDept/${selectedId}`);
-  };
-
   return (
     <>
       <h2>Department List</h2>
-      <Link to="/departmentList/createDept">
-        <button className="createDept-btn">Create Department</button>
+      <Link to="/departmentlist/createdept">
+        <button className="createDept-btn">Create</button>
       </Link>
       <table>
         <thead>
@@ -60,8 +51,14 @@ const DepartmentList = () => {
               <td>{item.name}</td>
               <td>{item.id}</td>
               <td>
-                <img src={view} onClick={() => handleView(item.id)}></img>
-                <img src={deleted} onClick={() => handleDelete(item.id)}></img>
+                <img
+                  src={view}
+                  onClick={() => navigate(`viewdept/${item.id}`)}
+                ></img>
+                <img
+                  src={deleted}
+                  onClick={() => dispatch(deleteDept(item.id))}
+                ></img>
               </td>
             </tr>
           </tbody>

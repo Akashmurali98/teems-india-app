@@ -2,10 +2,10 @@ import { Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import React, { useEffect } from "react";
 
+import { list } from "../../store/Users/actions";
 import "../../Css/UserList.css";
-import { list } from "store/Users/actions";
 
-const UsersList = () => {
+const UserList = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -18,7 +18,7 @@ const UsersList = () => {
       <table className="usersList">
         <caption>
           {" "}
-          <Link to="/usersList/create">
+          <Link to="/userslist/create">
             <button className="create-usersList">Create Role</button>
           </Link>
         </caption>
@@ -59,4 +59,4 @@ const UsersList = () => {
   );
 };
 
-export default UsersList;
+export default UserList;
