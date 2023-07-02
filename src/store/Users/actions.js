@@ -1,7 +1,7 @@
 import UsersApi from "../../Service/Users";
 import { listusers } from "./Reducers";
 
-export const listRole = (data) => (dispatch) => {
+export const list = () => (dispatch) => {
   const usersApiObj = new UsersApi();
   usersApiObj
     .listUsers()

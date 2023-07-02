@@ -1,7 +1,7 @@
 import Swal from "sweetalert2";
 import axios from "axios";
 
-import { loaderOpening } from "../store/main/Reducers";
+import { setLoader } from "../store/main/Reducers";
 
 class DeptApi {
   constructor(dispatch) {
@@ -9,7 +9,7 @@ class DeptApi {
   }
   createDept(data) {
     const token = sessionStorage.getItem("token");
-    this.dispatch(loaderOpening(true));
+    this.dispatch(setLoader(true));
     return new Promise((resolve) => {
       axios
         .post(
@@ -27,7 +27,7 @@ class DeptApi {
         .then(
           (response) => {
             resolve(response.data.data);
-            this.dispatch(loaderOpening(false));
+            this.dispatch(setLoader(false));
           },
           (error) => {
             console.log(error);
@@ -38,7 +38,7 @@ class DeptApi {
 
   listDept(data) {
     const token = sessionStorage.getItem("token");
-    this.dispatch(loaderOpening(true));
+    this.dispatch(setLoader(true));
     return new Promise((resolve) => {
       axios
         .get("dev/api/department", {
@@ -49,17 +49,20 @@ class DeptApi {
         })
         .then((response) => {
           resolve(response.data.data);
-          this.dispatch(loaderOpening(false));
+          this.dispatch(setLoader(false));
         })
         .catch((error) => {
           console.log(error);
+        })
+        .finally(() => {
+          this.dispatch(setLoader(false));
         });
     });
   }
 
   viewDept(selectedId) {
     const token = sessionStorage.getItem("token");
-    this.dispatch(loaderOpening(true));
+    this.dispatch(setLoader(true));
     return new Promise((resolve) => {
       axios
         .get(`/dev/api/department/${selectedId}`, {
@@ -71,18 +74,21 @@ class DeptApi {
         .then(
           (response) => {
             resolve(response.data.data);
-            this.dispatch(loaderOpening(false));
+            this.dispatch(setLoader(false));
           },
           (error) => {
             console.log(error);
           }
-        );
+        )
+        .finally(() => {
+          this.dispatch(setLoader(false));
+        });
     });
   }
 
   deleteDept(selectedId) {
     const token = sessionStorage.getItem("token");
-    this.dispatch(loaderOpening(true));
+    this.dispatch(setLoader(true));
     return new Promise((resolve) => {
       Swal.fire({
         title: "Are you sure?",
@@ -104,7 +110,7 @@ class DeptApi {
             .then((response) => {
               resolve(selectedId);
               Swal.fire("Deleted!", "The role has been deleted.", "success");
-              this.dispatch(loaderOpening(true));
+              this.dispatch(setLoader(true));
             })
             .catch((error) => {
               console.error(error);
@@ -113,7 +119,12 @@ class DeptApi {
                 "An error occurred while deleting the role.",
                 "error"
               );
+            })
+            .finally(() => {
+              this.dispatch(setLoader(false));
             });
+        } else {
+          this.dispatch(setLoader(false));
         }
       });
     });

@@ -2,7 +2,6 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
   usersData: [],
-  //   viewData: [],
 };
 
 const usersSlice = createSlice({
@@ -18,5 +17,5 @@ const usersSlice = createSlice({
 
 export const { listusers } = usersSlice.actions;
 
-export const selectUsersData = (state) => state.user.usersData;
+export const selectUsersData = (state) => state.users.usersData;
 export default usersSlice.reducer;

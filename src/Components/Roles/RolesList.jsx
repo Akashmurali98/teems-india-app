@@ -1,29 +1,27 @@
 import { useSelector, useDispatch } from "react-redux";
-import { useParams } from "react-router-dom";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
-import axios from "axios";
-
 import React, { useEffect, useState } from "react";
+
 import "../../assets/Css/RolesList.css";
 import view from "../../assets/Images/visibility.png";
 import deleted from "../../assets/Images//delete.png";
 import { selectFormData } from "../../store/Role/Reducers";
-import { deleteRole, listRole, viewRole } from "../../store/Role/actions";
+import { deleteRole, listRole } from "../../store/Role/actions";
 
 const RolesList = () => {
+  
   const [data, setData] = useState([]);
-  const id = useParams();
   const navigate = useNavigate();
   const listData = useSelector(selectFormData);
   const dispatch = useDispatch();
+  
   useEffect(() => {
     dispatch(listRole(data));
   }, []);
 
   const handleView = (selectedId) => {
     navigate(`viewRole/${selectedId}`);
-    dispatch(viewRole(selectedId));
   };
 
   const handleDelete = (selectedId) => {
@@ -60,7 +58,7 @@ const RolesList = () => {
               <input type="text"></input>
             </td>
           </tr>
-          {listData.map((item, index) => (
+          {listData?.map((item, index) => (
             <tr key={index}>
               <td>{index + 1}</td>
               <td>{item.name}</td>

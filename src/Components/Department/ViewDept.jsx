@@ -1,12 +1,13 @@
 import { useParams } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-
 import React, { useEffect } from "react";
-import { viewdept } from "../../store/Department/action";
+
+import { viewdept as viewDept  } from "../../store/Department/action";
 import { selectViewData } from "../../store/Department/Reducers";
 
 const ViewDept = () => {
+  
   const selectedId = useParams();
   const id = selectedId.id;
   const dispatch = useDispatch();
@@ -14,21 +15,17 @@ const ViewDept = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    dispatch(viewdept(id));
+    dispatch(viewDept(id));
   }, []);
-
-  const handleback = () => {
-    navigate(-1);
-  };
 
   return (
     <>
-      <button className="update" onClick={handleback}>
+      <button className="update" onClick={() => navigate(-1)}>
         back
       </button>
       <table>
         <tr>
-          <th>Roles</th>
+          <th>Department</th>
           <td>{viewData.name}</td>
         </tr>
         <tr>

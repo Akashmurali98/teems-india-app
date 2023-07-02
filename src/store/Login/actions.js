@@ -2,7 +2,7 @@ import LoginApi from "../../Service/Login";
 import { currentuser } from "./reducers";
 
 export const authentication = (data) => (dispatch) => {
-  const loginApiObj = new LoginApi();
+  const loginApiObj = new LoginApi(dispatch);
   return new Promise((resolve) => {
     loginApiObj
       .authentication(data)

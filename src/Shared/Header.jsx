@@ -9,7 +9,7 @@ const Header = () => {
   return (
     <div className="Header">
       <Link to="/myapplication">
-        <span className="head-text-left"> My Aplication</span>
+        <span className="head-text-left"> My Application</span>
       </Link>
         <Link to="/" onClick={() => handletoken()}>
           <span className="head-text-right"> Logout(user)</span>

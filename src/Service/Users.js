@@ -5,7 +5,7 @@ class UsersApi {
     this.dispatch = dispatch;
   }
 
-  listUsers(data) {
+  listUsers() {
     const token = sessionStorage.getItem("token");
     return new Promise((resolve) => {
       axios
@@ -16,8 +16,7 @@ class UsersApi {
           },
         })
         .then((response) => {
-          resolve(response.data.data);
-        })
+          resolve(response.data.data);})
         .catch((error) => {
           console.log(error);
         });

@@ -1,6 +1,7 @@
 import { useSelector } from "react-redux";
 import { Provider } from "react-redux";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
+import React, { useState } from "react";
 
 import Login from "../Components/Authentication/Login";
 import PrivateRoutes from "../PrivateRoute";
@@ -13,21 +14,14 @@ import CreateDept from "../Components/Department/CreateDept";
 import ViewDept from "../Components/Department/ViewDept";
 import Loader from "../Shared/Loader";
 import store from "../store/store.js";
-import {  useState } from "react";
 import { selectStatus } from "../store/main/Reducers";
 import DepartmentList from "../Components/Department/Department";
 import UsersList from "../Components/Users/UsersList";
 import CreateUsers from "../Components/Users/Create";
 import UsersView from "../Components/Users/View";
-import React from "react";
 
 const Layout = () => {
   const [status, setStatus] = useState(false);
-  // useEffect(() => {
-  //   const token = sessionStorage.getItem("token");
-  //   console.log(token);
-  //   setStatus(token ? true : false);
-  // });
   const loaderStatus = useSelector(selectStatus);
 
   return (

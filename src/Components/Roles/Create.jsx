@@ -1,14 +1,12 @@
 import { useForm } from "react-hook-form";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
+import React from "react";
 
 import "../../assets/Css/Create.css";
-import React from "react";
 import { createRole } from "../../store/Role/actions";
-import RolesApi from "../../Service/Roles";
 
 const CreateRole = () => {
   const dispatch = useDispatch();
-  const listData = useSelector((state) => state.role.roleData);
 
   const {
     handleSubmit,
@@ -18,8 +16,6 @@ const CreateRole = () => {
 
   const onSubmit = (data) => {
     dispatch(createRole(data));
-    dispatch(Loader());
-    const obj = new RolesApi();
   };
 
   return (
@@ -33,7 +29,7 @@ const CreateRole = () => {
           {...register("roles", {
             required: "Enter the name",
             pattern: {
-              value: /^[A-Za-z]+$/,
+              value: /^[A-Za-z ]+$/,
               message: "Alphabets only required",
             },
           })}

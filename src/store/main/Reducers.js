@@ -8,12 +8,12 @@ const statusSlice = createSlice({
   name: "status",
   initialState,
   reducers: {
-    loaderOpening: (state, action) => {
+    setLoader: (state, action) => {
       state.loader = action.payload;
     },
   },
 });
 
-export const { loaderOpening, loaderClosing } = statusSlice.actions;
+export const { setLoader } = statusSlice.actions;
 export const selectStatus = (state) => state.main.loader;
 export default statusSlice.reducer;

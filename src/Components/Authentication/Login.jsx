@@ -1,8 +1,8 @@
 import { useForm } from "react-hook-form";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import React from "react";
 
-import React, { useEffect } from "react";
 import "../../assets/Css/Login.css";
 import { authentication } from "../../store/Login/actions";
 
@@ -52,11 +52,12 @@ const Login = () => {
           <label>Password </label>
           <input
             type="password"
-            name="password"
-            {...register("password", { required: true })}
+            {...register("password", {
+              required: "Enter the password",
+            })}
           ></input>
           <br />
-          {errors.password && <span>This field is required</span>}
+          {errors.password && <span>{errors.password?.message}</span>}
           <br />
           <label>
             <input type="checkbox" {...register("rememberMe")} />

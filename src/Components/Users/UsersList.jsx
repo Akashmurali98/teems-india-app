@@ -1,11 +1,20 @@
 import { Link } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import React, { useEffect } from "react";
 
-import React from "react";
+import "../../Css/UserList.css";
+import { list } from "store/Users/actions";
 
 const UsersList = () => {
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(list());
+  }, []);
+
   return (
     <>
-      <h1 className="usersHead">Roles</h1>
+      <h1 className="usersHead">Users</h1>
       <table className="usersList">
         <caption>
           {" "}
@@ -44,19 +53,6 @@ const UsersList = () => {
               <input type="text"></input>
             </td>
           </tr>
-          {/* {listData.map((item, index) => (
-            <tr key={index}>
-              <td>{index + 1}</td>
-              <td>{item.name}</td>
-              <td>{item.id}</td>
-              <td>
-                <img src={view}></img>
-                <img src={edit}></img>
-
-                <img src={deleted}></img>
-              </td>
-            </tr>
-          ))} */}
         </tbody>
       </table>
     </>

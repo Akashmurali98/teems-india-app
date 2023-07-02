@@ -1,13 +1,14 @@
 import { useDispatch } from "react-redux";
-import { useParams } from "react-router-dom";
 import { useForm } from "react-hook-form";
+import React from "react";
 
 import "../../assets/Css/CreateDept.css";
-import { createdept } from "../../store/Department/action";
+import { createdept as  createDept} from "../../store/Department/action";
 
 const CreateDept = () => {
-  const selectedId = useParams();
+
   const dispatch = useDispatch();
+
   const {
     handleSubmit,
     register,
@@ -15,7 +16,7 @@ const CreateDept = () => {
   } = useForm();
 
   const onSubmit = (data) => {
-    dispatch(createdept(data));
+    dispatch(createDept(data));
   };
 
   return (

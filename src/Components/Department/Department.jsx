@@ -1,24 +1,28 @@
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
+import React, { useEffect } from "react";
 
-import React, { useEffect, useState } from "react";
 import "../../assets/Css/DepartmentList.css";
 import view from "../../assets/Images/visibility.png";
 import deleted from "../../assets/Images/delete.png";
-import { deletedept, listdept } from "../../store/Department/action";
+import {
+  deletedept as deleteDept,
+  listdept as listDept,
+} from "../../store/Department/action";
 import { selectFormData } from "../../store/Department/Reducers";
 
 const DepartmentList = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const listData = useSelector(selectFormData);
+  
   useEffect(() => {
-    dispatch(listdept());
+    dispatch(listDept());
   }, []);
 
   const handleDelete = (selectedId) => {
-    dispatch(deletedept(selectedId));
+    dispatch(deleteDept(selectedId));
   };
 
   const handleView = (selectedId) => {
@@ -49,7 +53,7 @@ const DepartmentList = () => {
             <input type="text"></input>
           </td>
         </tr>
-        {listData.map((item, index) => (
+        {listData?.map((item, index) => (
           <tbody key={index}>
             <tr>
               <td>{index + 1}</td>
