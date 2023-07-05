@@ -28,14 +28,14 @@ const CreateDept = () => {
           {...register("department", {
             required: "Enter the name",
             pattern: {
-              value: /^[A-Za-z]+$/,
+              value: /^[A-Za-z ]+$/,
               message: "Alphabets only required",
             },
           })}
         ></input>
         {errors.roles && <span>{errors.roles?.message}</span>}
         <button className="createDept-btn" type="submit">
-          Create 
+          Create
         </button>
       </form>
     </>
