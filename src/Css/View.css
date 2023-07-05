@@ -1,0 +1,21 @@
+.update {
+  background-color: #2e6da4;
+  position: unset;
+  margin: 10px 3px 10px 150px;
+}
+
+.delete {
+  background-color: #d43f3a;
+  position: unset;
+  margin: 10px 3px 10px 10px;
+}
+
+.view {
+  color: black;
+  width: 60%;
+  margin: 5px 0px 0px 150px;
+}
+
+.view td {
+  width: 40%;
+}
