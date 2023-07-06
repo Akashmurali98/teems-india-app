@@ -6,6 +6,59 @@ class UsersApi {
   constructor(dispatch) {
     this.dispatch = dispatch;
   }
+  createUsers(data) {
+    const token = sessionStorage.getItem("token");
+    this.dispatch(setLoader(true));
+    const updatedData = {
+      ...data,
+      roles: [parseInt(data.roles)],
+      departments: [parseInt(data.departments)],
+    };
+    const {
+      name,
+      email,
+      username,
+      password,
+      is_active,
+      is_admin,
+      roles,
+      departments,
+    } = updatedData;
+
+    return new Promise((resolve) => {
+      axios
+        .post(
+          `/dev/api/user`,
+          {
+            name: name,
+            email: email,
+            username: username,
+            password: password,
+            is_active: is_active,
+            is_admin: is_admin,
+            roles: roles,
+            departments: departments,
+          },
+          {
+            headers: {
+              Accept: "*/*",
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        )
+        .then(
+          (response) => {
+            resolve(response.data.data);
+          },
+          (error) => {
+            console.log(error);
+          }
+        )
+        .finally(() => {
+          this.dispatch(setLoader(false));
+        });
+    });
+  }
   listUsers() {
     const token = sessionStorage.getItem("token");
     this.dispatch(setLoader(true));

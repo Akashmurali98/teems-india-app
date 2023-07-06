@@ -13,8 +13,6 @@ export const list = () => (dispatch) => {
     });
 };
 
-
-
 export const deleteUser = (data) => (dispatch) => {
   const usersApiObj = new UsersApi(dispatch);
   console.log(data);
@@ -22,6 +20,19 @@ export const deleteUser = (data) => (dispatch) => {
     .deleteUsers(data)
     .then((value) => {
       dispatch(deleteusers(value));
+    })
+    .catch((error) => {
+      console.error(error);
+    });
+};
+
+export const createUser = (data) => (dispatch) => {
+  const usersApiObj = new UsersApi(dispatch);
+  usersApiObj
+    .createUsers(data)
+    .then((value) => {
+      console.log(value);
+      dispatch(createUser(value));
     })
     .catch((error) => {
       console.error(error);

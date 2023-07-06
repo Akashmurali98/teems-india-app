@@ -15,10 +15,13 @@ const userSlice = createSlice({
       const index = action.payload;
       state.userData.splice(index, 1);
     },
+    createUser: (state, action) => {
+      state.userData.push(action.payload);
+    },
     
   },
 });
 
-export const { listusers, deleteUser } = userSlice.actions;
+export const { listusers, deleteUser,createUser } = userSlice.actions;
 export const selectUserData = (state) => state.user.userData;
 export default userSlice.reducer;
