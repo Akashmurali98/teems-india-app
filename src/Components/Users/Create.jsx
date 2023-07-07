@@ -75,7 +75,6 @@ const CreateUser = () => {
           })}
         />
         {errors?.email && <span>{errors.email.message}</span>}
-
         <input
           placeholder="User Name"
           type="text"
