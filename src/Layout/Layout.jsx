@@ -44,8 +44,8 @@ const Layout = () => {
                 element={<ViewDept />}
               />
               <Route path="/userlist" element={<UserList />} />
-              <Route path="/userlist/create" element={<CreateUser />} />
-              <Route path="/userlist/view" element={<UserView />} />
+              {/* <Route path="/userlist/create" element={<CreateUser />} /> */}
+              {/* <Route path="/userlist/view" element={<UserView />} /> */}
             </Route>
           </Routes>
         </Provider>
