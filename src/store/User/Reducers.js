@@ -16,9 +16,13 @@ const userSlice = createSlice({
       const index = state.userData.findIndex(((item) => item.id == data.id ))
       state.userData.splice(index, 1);
     },
+    createUser: (state, action) => {
+      state.userData.push(action.payload);
+    },
+    
   },
 });
 
-export const { listUser, deleteUser } = userSlice.actions;
+export const { listusers, deleteUser,createUser } = userSlice.actions;
 export const selectUserData = (state) => state.user.userData;
 export default userSlice.reducer;
