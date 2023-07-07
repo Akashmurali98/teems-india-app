@@ -1,6 +1,7 @@
 import axios from "axios";
-import { setLoader } from "../store/main/Reducers";
 import Swal from "sweetalert2";
+
+import { setLoader } from "../store/main/Reducers";
 
 class UsersApi {
   constructor(dispatch) {
@@ -59,7 +60,7 @@ class UsersApi {
         });
     });
   }
-  listUsers() {
+  ListUser() {
     const token = sessionStorage.getItem("token");
     this.dispatch(setLoader(true));
 
@@ -84,7 +85,7 @@ class UsersApi {
     });
   }
 
-  deleteUsers(selectedId) {
+  DeleteUser(selectedId) {
     const token = sessionStorage.getItem("token");
     console.log();
     return new Promise((resolve) => {

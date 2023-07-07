@@ -8,11 +8,12 @@ const userSlice = createSlice({
   name: "users",
   initialState,
   reducers: {
-    listusers: (state, action) => {
+    listUser: (state, action) => {
       state.userData = action.payload;
     },
     deleteUser: (state, action) => {
-      const index = action.payload;
+      const data = action.payload;
+      const index = state.userData.findIndex(((item) => item.id == data.id ))
       state.userData.splice(index, 1);
     },
     createUser: (state, action) => {
