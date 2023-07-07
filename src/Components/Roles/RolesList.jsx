@@ -18,7 +18,7 @@ const RoleList = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(listRole(data));
+    dispatch(listRole());
   }, []);
 
   return (

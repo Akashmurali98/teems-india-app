@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import React, { useEffect } from "react";
 
@@ -16,7 +16,7 @@ import "../../Css/UserList.css";
 const UserList = () => {
   const dispatch = useDispatch();
   const listData = useSelector(selectUserData);
-
+  const navigate = useNavigate();
   useEffect(() => {
     dispatch(list());
     dispatch(listrole());
@@ -97,7 +97,10 @@ const UserList = () => {
                   src={deleted}
                   onClick={() => dispatch(deleteUser(item.id))}
                 ></img>
-                <img src={edit}></img>
+                <img
+                  src={edit}
+                  onClick={() => navigate(`Create/${item.id}`)}
+                ></img>
               </td>
             </tr>
           ))}

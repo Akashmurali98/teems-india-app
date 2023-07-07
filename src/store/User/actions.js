@@ -1,5 +1,5 @@
 import UsersApi from "../../Service/Users";
-import { listusers, deleteUser as deleteusers } from "./Reducers";
+import { listusers, deleteUser as deleteusers,editUser as editUsers } from "./Reducers";
 
 export const list = () => (dispatch) => {
   const usersApiObj = new UsersApi(dispatch);
@@ -33,6 +33,20 @@ export const createUser = (data) => (dispatch) => {
     .then((value) => {
       console.log(value);
       dispatch(createUser(value));
+    })
+    .catch((error) => {
+      console.error(error);
+    });
+};
+
+
+export const editUser = (data) => (dispatch) => {
+  const usersApiObj = new UsersApi(dispatch);
+  usersApiObj
+    .editUsers(data)
+    .then((value) => {
+      console.log(value);
+      dispatch(editUsers(value));
     })
     .catch((error) => {
       console.error(error);
