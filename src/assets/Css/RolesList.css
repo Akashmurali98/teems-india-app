@@ -26,10 +26,9 @@ tr:nth-child(even) {
 
 .roleList input[type="text"] {
   width: 98%;
-    padding: 10px 0px;
-    margin: 5px 0px;
-    font-size: medium;
-
+  padding: 10px 0px;
+  margin: 5px 0px;
+  font-size: medium;
 }
 
 .roleList .create-roleList {

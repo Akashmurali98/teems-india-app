@@ -15,8 +15,8 @@ import store from "../store/store.js";
 import { selectStatus } from "../store/main/Reducers";
 import DepartmentList from "../Components/Department/Department";
 import UserList from "../Components/Users/UsersList";
-import CreateUser from "../Components/Users/Create";
-import UserView from "../Components/Users/View";
+// import CreateUser from "../Components/Users/Create";
+// hjgjhimport UserView from "../Components/Users/View";
 
 const Layout = () => {
   const [status, setStatus] = useState(false);
@@ -44,8 +44,8 @@ const Layout = () => {
                 element={<ViewDept />}
               />
               <Route path="/userlist" element={<UserList />} />
-              <Route path="/userlist/create" element={<CreateUser />} />
-              <Route path="/userlist/view" element={<UserView />} />
+              {/* <Route path="/userlist/create" element={<CreateUser />} /> */}
+              {/* <Route path="/userlist/view" element={<UserView />} /> */}
             </Route>
           </Routes>
         </Provider>

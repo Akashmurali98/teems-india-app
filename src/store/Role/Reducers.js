@@ -28,8 +28,7 @@ const formSlice = createSlice({
   },
 });
 
-export const { createRole, deleteRole, viewRole, listRole } =
-  formSlice.actions;
+export const { createRole, deleteRole, viewRole, listRole } = formSlice.actions;
 export const selectFormData = (state) => state.role.roleData;
 export const selectViewData = (state) => state.role.viewData;
 
