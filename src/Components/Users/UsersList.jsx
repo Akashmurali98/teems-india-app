@@ -7,8 +7,8 @@ import view from "../../assets/Images/visibility.png";
 import deleted from "../../assets/Images/delete.png";
 import { list } from "../../store/User/actions";
 import { selectUserData } from "../../store/User/Reducers";
-import { listdept } from "../../store/Department/action";
-import { listrole } from "../../store/Role/actions";
+import { listdept as listDept } from "../../store/Department/action";
+import { listrole as listRole } from "../../store/Role/actions";
 import { userDelete } from "../../store/User/actions";
 
 import "../../Css/UserList.css";
@@ -19,11 +19,10 @@ const UserList = () => {
 
   useEffect(() => {
     dispatch(list());
-    dispatch(listrole());
-    dispatch(listdept());
+    dispatch(listRole());
+    dispatch(listDept());
   }, []);
 
-  const inputFields = ["text", "text", "text", "text", "text"];
   const tableHead = [
     "Name",
     "Email",
@@ -54,13 +53,15 @@ const UserList = () => {
         </thead>
         <tbody>
           <tr>
-            {inputFields?.map((item, index) => (
-              <td key={index}>
-                {" "}
-                <input type={item} />{" "}
-              </td>
-            ))}
+            {Array(5)
+              .fill()
+              .map((_, index) => (
+                <td key={index}>
+                  <input type="text" />
+                </td>
+              ))}
           </tr>
+
           {listData?.map((item, index) => (
             <tr key={index}>
               <td>{item.name}</td>

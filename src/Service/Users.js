@@ -7,7 +7,7 @@ class UsersApi {
   constructor(dispatch) {
     this.dispatch = dispatch;
   }
-  ListUser() {
+  listUser() {
     const token = sessionStorage.getItem("token");
     this.dispatch(setLoader(true));
 
@@ -32,7 +32,7 @@ class UsersApi {
     });
   }
 
-  DeleteUser(selectedId) {
+  deleteUser(selectedId) {
     const token = sessionStorage.getItem("token");
     console.log();
     return new Promise((resolve) => {
