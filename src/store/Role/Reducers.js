@@ -19,6 +19,7 @@ const formSlice = createSlice({
     },
     viewRole: (state, action) => {
       const idToView = action.payload;
+      console.log(idToView)
       state.viewData = idToView;
     },
     listRole: (state, action) => {

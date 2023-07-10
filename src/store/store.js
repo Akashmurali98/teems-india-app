@@ -2,7 +2,7 @@ import { configureStore } from "@reduxjs/toolkit";
 import formCreate from "./Role/Reducers.js";
 import formDept from "./Department/Reducers.js";
 import status from "./main/Reducers.js";
-import userDetails from "./Login/reducers.js";
+import userDetails from "./Login/Reducers.js";
 import formUser from "./User/Reducers.js";
 
 const store = configureStore({

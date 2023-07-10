@@ -1,44 +1,62 @@
 import UsersApi from "../../Service/Users";
-import { listusers, deleteUser as deleteusers,editUser as editUsers } from "./Reducers";
+import {
+  listUser,
+  deleteUser as deleteusers,
+  editUser as editUsers,
+  viewUser as viewUsers,
+  createUser,
+} from "./Reducers";
 
 export const list = () => (dispatch) => {
   const usersApiObj = new UsersApi(dispatch);
   usersApiObj
     .listUsers()
     .then((value) => {
-      dispatch(listusers(value));
+      dispatch(listUser(value));
     })
     .catch((error) => {
       console.error(error);
     });
+};
+
+export const view = (id) => (dispatch) => {
+  const usersApiObj = new UsersApi(dispatch);
+  return new Promise((resolve) => {
+    usersApiObj
+      .viewUsers(id)
+      .then((value) => {
+        dispatch(viewUsers(value));
+        resolve(value);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  });
 };
 
 export const deleteUser = (data) => (dispatch) => {
   const usersApiObj = new UsersApi(dispatch);
-  console.log(data);
   usersApiObj
     .deleteUsers(data)
     .then((value) => {
-      dispatch(deleteusers(value));
+      dispatch(value);
     })
     .catch((error) => {
       console.error(error);
     });
 };
 
-export const createUser = (data) => (dispatch) => {
+export const create = (data) => (dispatch) => {
   const usersApiObj = new UsersApi(dispatch);
   usersApiObj
     .createUsers(data)
     .then((value) => {
-      console.log(value);
       dispatch(createUser(value));
     })
     .catch((error) => {
       console.error(error);
     });
 };
-
 
 export const editUser = (data) => (dispatch) => {
   const usersApiObj = new UsersApi(dispatch);

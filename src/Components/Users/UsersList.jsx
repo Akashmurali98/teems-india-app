@@ -3,24 +3,19 @@ import { useDispatch, useSelector } from "react-redux";
 import React, { useEffect } from "react";
 
 import edit from "../../assets/Images/create.png";
-import view from "../../assets/Images/visibility.png";
 import deleted from "../../assets/Images/delete.png";
-import { list } from "../../store/User/actions";
+import { list } from "../../store/User/Actions";
 import { selectUserData } from "../../store/User/Reducers";
-import { listdept } from "../../store/Department/action";
-import { listrole } from "../../store/Role/actions";
-import { deleteUser } from "../../store/User/actions";
-
+import { deleteUser } from "../../store/User/Actions";
 import "../../Css/UserList.css";
 
 const UserList = () => {
   const dispatch = useDispatch();
   const listData = useSelector(selectUserData);
   const navigate = useNavigate();
+
   useEffect(() => {
     dispatch(list());
-    dispatch(listrole());
-    dispatch(listdept());
   }, []);
 
   const tableStyle = {
@@ -92,7 +87,6 @@ const UserList = () => {
               </td>
               <td>{item.is_admin ? "Yes" : "No"}</td>
               <td>
-                <img src={view}></img>
                 <img
                   src={deleted}
                   onClick={() => dispatch(deleteUser(item.id))}

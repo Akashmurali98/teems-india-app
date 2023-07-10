@@ -59,13 +59,14 @@ class UsersApi {
         });
     });
   }
-  listUsers() {
+
+  listUsers() { 
     const token = sessionStorage.getItem("token");
     this.dispatch(setLoader(true));
 
     return new Promise((resolve) => {
       axios
-        .get("dev/api/user", {
+        .get("/dev/api/user", {
           headers: {
             Accept: "*/*",
             Authorization: `Bearer ${token}`,
@@ -73,7 +74,6 @@ class UsersApi {
         })
         .then((response) => {
           resolve(response.data.data);
-          console.log(response.data.data);
         })
         .catch((error) => {
           console.log(error);
@@ -131,9 +131,17 @@ class UsersApi {
       departments: [parseInt(data.departments)],
       id: parseInt(data.id),
     };
-    
-    const { name, email, is_active, is_admin, roles, departments, id,password } =
-      updatedData;
+
+    const {
+      name,
+      email,
+      is_active,
+      is_admin,
+      roles,
+      departments,
+      id,
+      password,
+    } = updatedData;
     console.log(id);
     return new Promise((resolve) => {
       axios
@@ -158,7 +166,33 @@ class UsersApi {
         .then(
           (response) => {
             resolve(response.data.data);
-            console.log(response)
+            console.log(response);
+          },
+          (error) => {
+            console.log(error);
+          }
+        )
+        .finally(() => {
+          this.dispatch(setLoader(false));
+        });
+    });
+  }
+
+  viewUsers(selectedId) {
+    const token = sessionStorage.getItem("token");
+    this.dispatch(setLoader(true));
+
+    return new Promise((resolve) => {
+      axios
+        .get(`/dev/api/user/${selectedId}`, {
+          headers: {
+            Accept: "*/*",
+            Authorization: `Bearer ${token}`,
+          },
+        })
+        .then(
+          (response) => {
+            resolve(response.data.data);
           },
           (error) => {
             console.log(error);

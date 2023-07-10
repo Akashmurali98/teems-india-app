@@ -43,7 +43,7 @@ class DeptApi {
     this.dispatch(setLoader(true));
     return new Promise((resolve) => {
       axios
-        .get("dev/api/department", {
+        .get("/dev/api/department", {
           headers: {
             Accept: "*/*",
             Authorization: `Bearer ${token}`,

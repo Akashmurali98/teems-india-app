@@ -1,51 +1,84 @@
+import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useForm } from "react-hook-form";
 import { useParams } from "react-router-dom";
 
 import { selectFormData } from "../../store/Role/Reducers";
 import { selectFormData as selectDeptData } from "../../store/Department/Reducers";
-import { createUser, editUser } from "../../store/User/actions";
-import { selectUserData } from "../../store/User/Reducers";
+import { listrole as Role } from "../../store/Role/actions";
+import { create, editUser, view } from "../../store/User/Actions";
 import "../../Css/CreateUser.css";
+import { listdept as Dept } from "../../store/Department/action";
 
 const CreateUser = () => {
+  const dispatch = useDispatch();
+
+  const selectedid = useParams();
+
+  let id = selectedid.id;
   const {
     handleSubmit,
     register,
     formState: { errors },
     watch,
+    setValue,
+    reset,
   } = useForm("onTouched");
-  const selectedid = useParams();
-  const id = selectedid.id;
 
-  const data = useSelector(selectUserData);
-  const selectedData = id ? data.find((item) => item.id == id) : "";
-  const { name, email, username, is_active, roles, departments } = selectedData;
-  const dispatch = useDispatch();
+  useEffect(() => {
+    if (id) {
+      dispatch(view(id))
+        .then((selectedData) => {
+          const {
+            name,
+            email,
+            username,
+            is_active,
+            is_admin,
+            roles,
+            departments,
+          } = selectedData;
+          setValue("name", name);
+          setValue("email", email);
+          setValue("username", username);
+          setValue("is_active", is_active);
+          setValue("is_admin", is_admin);
+          setValue("departments", departments[0].id);
+          setValue("roles", roles[0].id);
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+      dispatch(Role());
+      dispatch(Dept());
+    }
+  }, [id]);
+
   const listRole = useSelector(selectFormData);
   const listDept = useSelector(selectDeptData);
-
   const password = watch("password");
 
   const onSubmit = (data) => {
     delete data.confirmpassword;
-    dispatch(createUser(data));
+    dispatch(create(data));
   };
+
   const onUpdate = (data) => {
     data.id = id;
     dispatch(editUser(data));
+    reset();
   };
 
   const hidePassword = !!id;
 
   return (
     <>
+      {name}
       <form className="usersForm">
         <input
           placeholder="Name"
           type="text"
           name="name"
-          defaultValue={name}
           {...register("name", {
             required: "Enter the name",
             pattern: {
@@ -65,7 +98,6 @@ const CreateUser = () => {
           placeholder="email"
           type="text"
           name="email"
-          defaultValue={email}
           {...register("email", {
             required: "Enter an email address",
             pattern: {
@@ -79,7 +111,6 @@ const CreateUser = () => {
           placeholder="User Name"
           type="text"
           name="username"
-          defaultValue={username}
           {...register("username", {
             required: "Enter the username",
             pattern: {
@@ -96,12 +127,7 @@ const CreateUser = () => {
         <br></br>
         <span className="checkbox">
           Is Active
-          <input
-            type="checkbox"
-            name="is_active"
-            defaultChecked={is_active ? is_active : false}
-            {...register("is_active")}
-          />
+          <input type="checkbox" name="is_active" {...register("is_active")} />
         </span>
 
         <span className="checkbox">
@@ -110,12 +136,10 @@ const CreateUser = () => {
         </span>
         <br />
         <select
+          placeholder="Select Roles"
           {...register("roles", { required: "Please select a role" })}
-          required
         >
-          <option key="" value={hidePassword ? roles[0].id : ""}>
-            {hidePassword ? roles[0].name : "Select Roles"}
-          </option>
+          <option> Select Roles</option>
           {listRole?.map((item, index) => (
             <option key={index} value={[item.id]}>
               {item.name}
@@ -130,9 +154,8 @@ const CreateUser = () => {
           })}
           required
         >
-          <option key="" value={hidePassword ? departments[0].id : ""}>
-            {hidePassword ? departments[0].name : "Select Departments"}
-          </option>
+          <option> Select Departments</option>
+
           {listDept?.map((item, index) => (
             <option key={index} value={[item.id]}>
               {item.name}
@@ -173,23 +196,14 @@ const CreateUser = () => {
           </>
         )}
         <br />
-        {id ? (
-          <button
-            className="createUser-btn"
-            type="submit"
-            onClick={handleSubmit(onUpdate)}
-          >
-            Update
-          </button>
-        ) : (
-          <button
-            className="createUser-btn"
-            type="submit"
-            onClick={handleSubmit(onSubmit)}
-          >
-            Create
-          </button>
-        )}
+
+        <button
+          className="createUser-btn"
+          type="submit"
+          onClick={handleSubmit(id ? onUpdate : onSubmit)}
+        >
+          {id ? "Update" : "Create"}
+        </button>
       </form>
     </>
   );
