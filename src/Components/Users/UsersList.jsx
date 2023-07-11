@@ -6,7 +6,10 @@ import edit from "../../assets/Images/create.png";
 import deleted from "../../assets/Images/delete.png";
 import { list } from "../../store/User/Actions";
 import { selectUserData } from "../../store/User/Reducers";
-import { deleteUser } from "../../store/User/Actions";
+import { listdept } from "../../store/Department/action";
+import { listrole } from "../../store/Role/actions";
+import { deleteUser } from "../../store/User/actions";
+
 import "../../Css/UserList.css";
 
 const UserList = () => {
@@ -18,17 +21,21 @@ const UserList = () => {
     dispatch(list());
   }, []);
 
-  const tableStyle = {
-    width: "100%",
-  };
-  const thStyle = {
-    width: "10%",
-  };
-
+  const inputFields = ["text", "text", "text", "text", "text"];
+  const tableHead = [
+    "Name",
+    "Email",
+    "Username",
+    "Roles",
+    "Departments",
+    "Active",
+    "Admin",
+    "Action",
+  ];
   return (
     <>
       <h1 className="usersHead">Users</h1>
-      <table className="usersList" style={tableStyle}>
+      <table className="usersList">
         <caption>
           <Link to="/userlist/create">
             <button className="create-usersList">Create Role</button>
@@ -36,40 +43,21 @@ const UserList = () => {
         </caption>
         <thead>
           <tr>
-            <th style={{ width: "10%" }}>Name</th>
-            <th style={{ width: "10%" }}>Email</th>
-            <th style={thStyle}>Username</th>
-            <th style={thStyle}>Roles</th>
-            <th style={thStyle}>Departments</th>
-            <th style={thStyle}>Active</th>
-            <th style={thStyle}>Admin </th>
-            <th style={thStyle}>Action </th>
+            {tableHead.map((item, index) => (
+              <th className="userHead" key={index}>
+                {item}
+              </th>
+            ))}
           </tr>
         </thead>
         <tbody>
           <tr>
-            <td>
-              {" "}
-              <input type="text" />{" "}
-            </td>
-            <td>
-              {" "}
-              <input type="text" />{" "}
-            </td>
-            <td>
-              {" "}
-              <input type="text" />{" "}
-            </td>
-            <td>
-              {" "}
-              <input type="text" />{" "}
-            </td>
-            <td>
-              {" "}
-              <input type="text" />{" "}
-            </td>
-            <td></td>
-            <td></td>
+            {inputFields?.map((item, index) => (
+              <td key={index}>
+                {" "}
+                <input type={item} />{" "}
+              </td>
+            ))}
           </tr>
           {listData?.map((item, index) => (
             <tr key={index}>
@@ -77,19 +65,17 @@ const UserList = () => {
               <td>{item.email}</td>
               <td>{item.username}</td>
               <td>{item?.roles[0]?.name}</td>
-              <td>{item?.departments[0]?.name}</td>
               <td>
-                {item.is_active ? (
-                  <input type="checkbox" checked readOnly />
-                ) : (
-                  <input type="checkbox" />
-                )}
+                {item?.departments[0]?.name} {item.is_active}
+              </td>
+              <td>
+                <input type="checkbox" checked={item.is_active} readOnly />
               </td>
               <td>{item.is_admin ? "Yes" : "No"}</td>
               <td>
                 <img
                   src={deleted}
-                  onClick={() => dispatch(deleteUser(item.id))}
+                  onClick={() => dispatch(userDelete(item.id))}
                 ></img>
                 <img
                   src={edit}

@@ -10,7 +10,7 @@ import {
 export const list = () => (dispatch) => {
   const usersApiObj = new UsersApi(dispatch);
   usersApiObj
-    .listUsers()
+    .ListUser()
     .then((value) => {
       dispatch(listUser(value));
     })
@@ -37,9 +37,9 @@ export const view = (id) => (dispatch) => {
 export const deleteUser = (data) => (dispatch) => {
   const usersApiObj = new UsersApi(dispatch);
   usersApiObj
-    .deleteUsers(data)
+    .DeleteUser(data)
     .then((value) => {
-      dispatch(value);
+      dispatch(deleteUser(value));
     })
     .catch((error) => {
       console.error(error);
