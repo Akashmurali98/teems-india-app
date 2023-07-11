@@ -40,5 +40,16 @@ select {
   height: 30px;
   position: unset;
   margin-left: 10px;
+}
 
+.backUser-btn{
+  background-color: red;
+  color: white;
+  width: 98%;
+  margin-left: 0px;
+  margin-top: 1%;
+  border-radius: 5px;
+  height: 30px;
+  position: unset;
+  margin-left: 10px;
 }

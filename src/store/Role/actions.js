@@ -3,6 +3,7 @@ import { createRole, deleteRole, viewRole, listRole } from "./Reducers";
 
 export const listrole = (data) => (dispatch) => {
   const rolesApiObj = new RolesApi(dispatch);
+  
   rolesApiObj
     .listRole()
     .then((value) => {

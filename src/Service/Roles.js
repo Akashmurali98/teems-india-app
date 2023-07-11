@@ -14,7 +14,7 @@ class RolesApi {
 
     return new Promise((resolve) => {
       axios
-        .get("dev/api/role", {
+        .get("/dev/api/role", {
           headers: {
             Accept: "*/*",
             Authorization: `Bearer ${token}`,

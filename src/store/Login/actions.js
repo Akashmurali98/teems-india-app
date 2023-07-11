@@ -1,5 +1,5 @@
 import LoginApi from "../../Service/Login";
-import { currentuser } from "./reducers";
+import { currentuser } from "./Reducers";
 
 export const authentication = (data) => (dispatch) => {
   const loginApiObj = new LoginApi(dispatch);

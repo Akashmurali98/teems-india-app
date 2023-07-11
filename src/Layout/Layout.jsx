@@ -44,6 +44,7 @@ const Layout = () => {
               />
               <Route path="/userlist" element={<UserList />} />
               <Route path="/userlist/create" element={<CreateUser />} />
+              <Route path="/userlist/create/:id" element={<CreateUser />} />
             </Route>
           </Routes>
         </Provider>

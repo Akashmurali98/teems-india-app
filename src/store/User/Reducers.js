@@ -2,6 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
   userData: [],
+  viewData: {},
 };
 
 const userSlice = createSlice({
@@ -19,10 +20,25 @@ const userSlice = createSlice({
     createUser: (state, action) => {
       state.userData.push(action.payload);
     },
-    
+    editUser: (state, action) => {
+      const data = action.payload;
+      const idTOEdit = data.id;
+      const index = state.userData.findIndex((item) => item.id == idTOEdit);
+      console.log(index);
+      state.userData.splice(index, 1, data);
+    },
+    viewUser: (state, action) => {
+      const idToView = action.payload;
+      state.viewData = idToView;
+    },
   },
 });
 
-export const { listusers, deleteUser,createUser } = userSlice.actions;
+export const { listUser, deleteUser, createUser, editUser, viewUser } =
+  userSlice.actions;
+
 export const selectUserData = (state) => state.user.userData;
+export const selectViewData = (state) => state.user.viewData;
+export const overAllData = (state) => state
+
 export default userSlice.reducer;
