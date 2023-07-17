@@ -1,18 +1,15 @@
-import { useForm } from "react-hook-form";
+import { useForm, FormProvider } from "react-hook-form";
 import { useDispatch } from "react-redux";
 import React from "react";
 
 import { createrole as createRole } from "../../store/Role/actions";
 import "../../assets/Css/Create.css";
+import { roleData } from "../../InputField/Data";
+import { getComponentByType } from "../../InputField/getComponentByType";
 
 const CreateRole = () => {
   const dispatch = useDispatch();
-
-  const {
-    handleSubmit,
-    register,
-    formState: { errors },
-  } = useForm("onTouched");
+  const nestedInputs = useForm();
 
   const onSubmit = (data) => {
     dispatch(createRole(data));
@@ -21,30 +18,20 @@ const CreateRole = () => {
   return (
     <>
       <h2>Create </h2>
-      <form className="createRole">
-        <label>Roles</label>
-        <input
-          type="text"
-          name="roles"
-          {...register("roles", {
-            required: "Enter the name",
-            pattern: {
-              value: /^[A-Za-z ]+$/,
-              message: "Alphabets only required",
-            },
-          })}
-        ></input>
-        {errors.roles && <span>{errors.roles?.message} </span>}
-
-        <br />
-        <button
-          className="createButton"
-          type="submit"
-          onClick={handleSubmit(onSubmit)}
+      <FormProvider {...nestedInputs}>
+        <form
+          className="createRole"
+          onSubmit={nestedInputs.handleSubmit(onSubmit)}
         >
-          Create
-        </button>
-      </form>
+          {roleData.map((field, index) => {
+            return <div key={index}>{getComponentByType(field)}</div>;
+          })}
+          <br />
+          <button className="createButton" type="submit">
+            Create
+          </button>
+        </form>
+      </FormProvider>
     </>
   );
 };

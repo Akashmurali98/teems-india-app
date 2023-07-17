@@ -1,7 +1,6 @@
 input[type="password"] {
-  width: 98%;
-  margin-left: 10px;
   margin-top: 2%;
+  width: 95%;
   border-radius: 5px;
   height: 30px;
 }
@@ -15,34 +14,37 @@ input[type="password"] {
 
 .usersForm input[type="text"] {
   margin-top: 2%;
+  width: 95%;
+  margin-left: 0px;
 }
 
 .usersForm input[type="checkbox"] {
   text-align: unset;
+  margin-left: 35px;
 }
 
 select {
-  width: 48%;
-  margin-left: 10px;
+  border-radius: 5px;
+  width: 45%;
   height: 30px;
   border-radius: 5px;
   margin-top: 2%;
-  padding: 5px;
+  margin-left: 35px;
 }
 
 .createUser-btn {
   background-color: #4cae4c;
   color: white;
-  width: 98%;
-  margin-left: 0px;
+  width: 96%;
   margin-top: 1%;
   border-radius: 5px;
-  height: 30px;
+  height: 35px;
   position: unset;
-  margin-left: 10px;
+  margin-left: 33px;
+  border-radius: 10px;
 }
 
-.backUser-btn{
+.backUser-btn {
   background-color: red;
   color: white;
   width: 98%;
@@ -52,4 +54,5 @@ select {
   height: 30px;
   position: unset;
   margin-left: 10px;
+  border-radius: 5px;
 }

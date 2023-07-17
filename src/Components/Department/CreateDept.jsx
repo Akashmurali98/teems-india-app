@@ -1,19 +1,15 @@
 import { useDispatch } from "react-redux";
-import { useForm } from "react-hook-form";
+import { useForm, FormProvider } from "react-hook-form";
 import React from "react";
 
 import "../../assets/Css/CreateDept.css";
 import { createdept as createDept } from "../../store/Department/action";
+import { deptData } from "../../InputField/Data";
+import { getComponentByType } from "../../InputField/getComponentByType";
 
 const CreateDept = () => {
   const dispatch = useDispatch();
-
-  const {
-    handleSubmit,
-    register,
-    formState: { errors },
-  } = useForm();
-
+  const nestedInputs = useForm();
   const onSubmit = (data) => {
     dispatch(createDept(data));
   };
@@ -21,23 +17,19 @@ const CreateDept = () => {
   return (
     <>
       <h2>Create Department</h2>
-      <form className="createDeptForm" onSubmit={handleSubmit(onSubmit)}>
-        <label>Department Name</label>
-        <input
-          type="text"
-          {...register("department", {
-            required: "Enter the name",
-            pattern: {
-              value: /^[A-Za-z ]+$/,
-              message: "Alphabets only required",
-            },
+      <FormProvider {...nestedInputs}>
+        <form
+          className="createDeptForm"
+          onSubmit={nestedInputs.handleSubmit(onSubmit)}
+        >
+          {deptData.map((field, index) => {
+            return <div key={index}>{getComponentByType(field)}</div>;
           })}
-        ></input>
-        {errors.roles && <span>{errors.roles?.message}</span>}
-        <button className="createDept-btn" type="submit">
-          Create
-        </button>
-      </form>
+          <button className="createDept-btn" type="submit">
+            Create
+          </button>
+        </form>
+      </FormProvider>
     </>
   );
 };

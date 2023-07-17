@@ -1,6 +1,6 @@
 import { Provider, useSelector } from "react-redux";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 import Login from "../Components/Authentication/Login";
 import PrivateRoutes from "../PrivateRoute";
@@ -16,15 +16,25 @@ import { selectStatus } from "../store/main/Reducers";
 import DepartmentList from "../Components/Department/Department";
 import UserList from "../Components/Users/UsersList";
 import CreateUser from "../Components/Users/Create";
+import { selectUserDetails } from "../store/Login/Reducers";
+
+import "../Css/layout.css";
 
 const Layout = () => {
-  const [status, setStatus] = useState(false);
+
+  
   const loaderStatus = useSelector(selectStatus);
+  const userName = useSelector(selectUserDetails);
+  const token = sessionStorage.getItem("token");
+  const status = token ? true : false;
 
   return (
     <>
       <BrowserRouter>
         <Header />
+        {status && (
+          <div className="accountName"> This is a {userName.name} account</div>
+        )}
         {loaderStatus && <Loader></Loader>}
         <Provider store={store}>
           <Routes>

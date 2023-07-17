@@ -6,9 +6,7 @@ import edit from "../../assets/Images/create.png";
 import deleted from "../../assets/Images/delete.png";
 import { list } from "../../store/User/Actions";
 import { selectUserData } from "../../store/User/Reducers";
-import { listdept } from "../../store/Department/action";
-import { listrole } from "../../store/Role/actions";
-import { deleteUser } from "../../store/User/actions";
+import { userDelete } from "../../store/User/Actions";
 
 import "../../Css/UserList.css";
 

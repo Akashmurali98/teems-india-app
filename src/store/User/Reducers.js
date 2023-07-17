@@ -14,8 +14,10 @@ const userSlice = createSlice({
     },
     deleteUser: (state, action) => {
       const data = action.payload;
+      console.log(data)
       const index = state.userData.findIndex(((item) => item.id == data.id ))
       state.userData.splice(index, 1);
+      
     },
     createUser: (state, action) => {
       state.userData.push(action.payload);

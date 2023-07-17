@@ -8,7 +8,7 @@ export const authentication = (data) => (dispatch) => {
       .authentication(data)
       .then((value) => {
         dispatch(currentuser(value));
-        resolve(true);
+        resolve(value);
       })
       .catch((error) => {
         console.error(error);
