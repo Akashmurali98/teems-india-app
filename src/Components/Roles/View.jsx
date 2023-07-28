@@ -2,9 +2,9 @@ import { useParams, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import React, { useEffect } from "react";
 
-import { selectViewData } from "../../store/Role/Reducers";
+import { selectViewData } from "../../store/Role/reducers";
 import { viewrole as viewRole } from "../../store/Role/actions";
-import "../../Css/View.css";
+import "../../assets/Css/View.css";
 
 const View = () => {
   const selectedId = useParams();

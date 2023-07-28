@@ -1,6 +1,6 @@
 import axios from "axios";
 
-import { setLoader } from "../store/main/Reducers";
+import { setLoader } from "../store/main/reducers";
 
 class BaseApi {
   constructor() {
@@ -18,7 +18,6 @@ class BaseApi {
     dispatch(setLoader(true));
     const { baseUrl, headers } = this.requestConfig;
     const url = `${baseUrl}${endpoint}`;
-    const token = sessionStorage.getItem("token");
     return new Promise((resolve) => {
       axios({
         method: method,
@@ -28,10 +27,10 @@ class BaseApi {
       })
         .then(
           function (response) {
-            if(method == "delete"){
-            resolve(data)
-            }else{
-              resolve(response.data.data)
+            if (method == "delete") {
+              resolve(data);
+            } else {
+              resolve(response?.data?.data);
             }
           },
           (error) => {

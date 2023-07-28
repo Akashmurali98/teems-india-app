@@ -4,8 +4,8 @@ import { useDispatch, useSelector } from "react-redux";
 import React, { useEffect } from "react";
 
 import { viewdept as viewDept } from "../../store/Department/action";
-import { selectViewData } from "../../store/Department/Reducers";
-import "../../Css/viewDept.css";
+import { selectViewData } from "../../store/Department/reducers";
+import "../../assets/Css/viewDept.css";
 
 const ViewDept = () => {
 

@@ -21,6 +21,7 @@ class RolesApi extends BaseApi {
 
   deleteRole(selectedId) {
     return this.delete(`role/${selectedId}`, this.dispatch, selectedId);
+
   }
 }
 

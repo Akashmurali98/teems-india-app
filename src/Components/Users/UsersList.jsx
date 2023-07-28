@@ -5,10 +5,10 @@ import React, { useEffect } from "react";
 import edit from "../../assets/Images/create.png";
 import deleted from "../../assets/Images/delete.png";
 import { list } from "../../store/User/Actions";
-import { selectUserData } from "../../store/User/Reducers";
+import { selectUserData } from "../../store/User/reducers";
 import { userDelete } from "../../store/User/Actions";
 
-import "../../Css/UserList.css";
+import "../../assets/Css/UserList.css";
 
 const UserList = () => {
   const dispatch = useDispatch();
@@ -36,7 +36,7 @@ const UserList = () => {
       <table className="usersList">
         <caption>
           <Link to="/userlist/create">
-            <button className="create-usersList">Create Role</button>
+            <button className="create-usersList">Create </button>
           </Link>
         </caption>
         <thead>

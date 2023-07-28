@@ -1,5 +1,5 @@
 import RolesApi from "../../Service/Roles";
-import { createRole, deleteRole, viewRole, listRole } from "./Reducers";
+import { createRole, deleteRole, viewRole, listRole } from "./reducers";
 
 export const listrole = (data) => (dispatch) => {
   const rolesApiObj = new RolesApi(dispatch);
@@ -16,14 +16,18 @@ export const listrole = (data) => (dispatch) => {
 
 export const createrole = (data) => (dispatch) => {
   const rolesApiObj = new RolesApi(dispatch);
-  rolesApiObj
-    .createRole(data)
-    .then((value) => {
-      dispatch(createRole(value));
-    })
-    .catch((error) => {
-      console.error(error);
-    });
+  return new Promise((resolve) => {
+    rolesApiObj
+      .createRole(data)
+      .then((value) => {
+        dispatch(createRole(value));
+        resolve(value);
+        console.log(value)
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  });
 };
 
 export const deleterole = (data) => (dispatch) => {

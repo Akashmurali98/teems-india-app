@@ -1,22 +1,33 @@
 import { useForm, FormProvider } from "react-hook-form";
 import { useDispatch } from "react-redux";
 import React from "react";
-
 import { createrole as createRole } from "../../store/Role/actions";
-import "../../assets/Css/Create.css";
 import { roleData } from "../../InputField/Data";
-import { getComponentByType } from "../../InputField/getComponentByType";
+import { useNavigate } from "react-router-dom";
+import "../../assets/Css/Create.css";
+import { getComponentByType } from "../../InputField/GetComponentByType";
+import Button from "../../Shared/Button";
 
 const CreateRole = () => {
   const dispatch = useDispatch();
   const nestedInputs = useForm();
 
+  const navigate = useNavigate();
   const onSubmit = (data) => {
-    dispatch(createRole(data));
+    dispatch(createRole(data))
+      .then((value) => {
+        if (value) {
+          navigate("/rolelist");
+        }
+      })
+      .catch((error) => {
+        console.error(error);
+      });
   };
 
   return (
     <>
+      <Button />
       <h2>Create </h2>
       <FormProvider {...nestedInputs}>
         <form

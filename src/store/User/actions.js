@@ -5,7 +5,7 @@ import {
   editUser as editUsers,
   viewUser as viewUsers,
   createUser,
-} from "./Reducers";
+} from "./reducers";
 
 export const list = () => (dispatch) => {
   const usersApiObj = new UsersApi(dispatch);

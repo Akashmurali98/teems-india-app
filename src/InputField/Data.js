@@ -1,7 +1,7 @@
 export const inputsFields = (
   isPasswordHide,
-  CheckPassword,
-  CheckConfirmPassword,
+  checkPassword,
+  checkConfirmPassword,
   role,
   dept
 ) => {
@@ -69,21 +69,19 @@ export const inputsFields = (
       fieldType: "selectdeptField",
       name: "departments",
       option: "Select Departments",
-      dept: dept,
+      data: dept,
       inputValidations: {
         required: "Please select a department",
       },
-      data: ["role", "account", "domar"],
     },
     {
       fieldType: "selectroleField",
       name: "roles",
       option: "Select Roles",
-      role: role,
+      data: role,
       inputValidations: {
         required: "Please select a roles",
       },
-      data: ["role", "account", "domar"],
     },
     isPasswordHide
       ? false
@@ -94,7 +92,7 @@ export const inputsFields = (
           fieldType: "passwordField",
           inputValidations: {
             required: "Please select the Confirm password",
-            validate: CheckPassword,
+            validate: checkPassword,
           },
         },
     isPasswordHide
@@ -106,7 +104,7 @@ export const inputsFields = (
           fieldType: "confirmPassword",
           inputValidations: {
             required: "Please select the Confirm password",
-            validate: CheckConfirmPassword,
+            validate: checkConfirmPassword,
           },
         },
   ].filter(Boolean);

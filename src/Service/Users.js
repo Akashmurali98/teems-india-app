@@ -28,7 +28,9 @@ class UsersApi extends BaseApi {
       departments: [parseInt(data.departments)],
       id: parseInt(data.id),
     };
+
     return this.patch(`user/${updatedData.id}`, this.dispatch, updatedData);
+
   }
 
   viewUsers(selectedId) {
