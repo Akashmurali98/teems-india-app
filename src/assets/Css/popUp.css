@@ -17,15 +17,26 @@
 
 .twoSelection {
   margin-top: 10px;
+  font-weight: 800;
+  font-size:x-large;  
 }
 
 .popUp img {
-  width: 80%;
+  width: 98%;
   height: 200px;
 }
 
-.cross{
+.cross {
   float: right;
   margin-right: 10px;
-  cursor:pointer;
+  cursor: pointer;
+}
+
+.pop-btn {
+  /* float: right; */
+  position: absolute;
+  left: 850px;
+  width: 90px;
+
+
 }

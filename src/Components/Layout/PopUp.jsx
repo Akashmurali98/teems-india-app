@@ -10,7 +10,7 @@ const Popup = (props) => {
         <header>
           {" "}
           ** Add Section
-          <span className="cross" onClick={props.handlePop}>
+          <span className="cross" onClick={() => props.handlePop(false)}>
             &#10006;
           </span>
           <hr></hr>
@@ -21,17 +21,17 @@ const Popup = (props) => {
               type="text"
               placeholder="Section Name"
               name="createfield"
-              onChange={props.handleChange}
+              onChange={(event) => props.handleChange(event.target.value)}
             ></input>
-            <button>Create</button>
           </form>
         </div>
 
-        <div className="twoSelection">
-          <u> ** Two Column Selection</u>
-        </div>
+        <div className="twoSelection">** Two Column Selection</div>
         <img src={inputImage}></img>
         <br></br>
+        <button className="pop-btn" onClick={() => props.handleClick()}>
+          Create
+        </button>
       </div>
     </>
   );

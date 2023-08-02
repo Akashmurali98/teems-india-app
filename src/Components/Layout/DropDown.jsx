@@ -14,3 +14,10 @@ const DropDown = ({ field }) => {
 };
 
 export default DropDown;
+
+const data = {
+  fieldType: "dropdown",
+  label: "Select :",
+  type: "select",
+  option: ["option1", "option2", "option3"],
+};

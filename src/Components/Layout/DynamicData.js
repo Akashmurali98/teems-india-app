@@ -1,19 +1,15 @@
 const DynamicData = [
   {
-    fieldType: "nameField",
+    fieldType: "textField",
     name: "name",
     type: "text",
     placeholder: "Name",
     inputValidations: {
       required: "Enter the name",
-      pattern: {
-        value: /^[A-Za-z ]+$/,
-        message: "Alphabets only required",
-      },
     },
   },
   {
-    fieldType: "selectdeptField",
+    fieldType: "textArea",
     name: "departments",
     option: "Select Departments",
     data: dept,

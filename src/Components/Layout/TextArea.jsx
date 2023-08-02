@@ -7,8 +7,8 @@ const TextArea = ({ field }) => {
       <textarea
         id="multilineInput"
         name="multilineInput"
-        rows="4"
-        cols="50"
+        rows="1"
+        cols="25"
         placeholder="Enter multiple lines of text here"
       />
     </>
@@ -16,3 +16,11 @@ const TextArea = ({ field }) => {
 };
 
 export default TextArea;
+
+const data = {
+  fieldType: "TextArea",
+  label: "Text Area :",
+  type: "textarea",
+  name: "multilineInput",
+  placeholder: "Enter multiple lines of text here",
+};

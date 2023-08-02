@@ -10,3 +10,5 @@ const TextField = () => {
 };
 
 export default TextField;
+
+const data = { fieldType: "TextField", label: "Name", type: "text" };

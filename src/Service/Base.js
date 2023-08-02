@@ -18,6 +18,7 @@ class BaseApi {
     dispatch(setLoader(true));
     const { baseUrl, headers } = this.requestConfig;
     const url = `${baseUrl}${endpoint}`;
+    console.log(data)
     return new Promise((resolve) => {
       axios({
         method: method,

@@ -25,9 +25,9 @@ class LoginApi {
         )
         .then((response) => {
           const data = response?.data?.data?.roles[0]?.name;
-          const token = response?.data?.data?.token
+          const token = response?.data?.data?.token;
           sessionStorage.setItem("userDetails", data);
-          sessionStorage.setItem("token", token);          
+          sessionStorage.setItem("token", token);
           resolve(response?.data?.data);
         })
         .catch((error) => {
