@@ -13,4 +13,3 @@ const CheckBox = () => {
 
 export default CheckBox;
 
-const data = {label:"Check Me", type:"checkbox"}

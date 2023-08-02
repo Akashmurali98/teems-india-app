@@ -17,10 +17,3 @@ const TextArea = ({ field }) => {
 
 export default TextArea;
 
-const data = {
-  fieldType: "TextArea",
-  label: "Text Area :",
-  type: "textarea",
-  name: "multilineInput",
-  placeholder: "Enter multiple lines of text here",
-};

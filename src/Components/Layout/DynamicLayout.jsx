@@ -7,6 +7,7 @@ import edit from "../../assets/Images/create.png";
 import deletee from "../../assets/Images/delete.png";
 
 import "../../assets/Css/DynamicLayout.css";
+import { inputFieldData } from "./DynamicData";
 
 const DynamicLayout = () => {
   const [sectionAdd, setSectionAdd] = useState(false);
@@ -27,31 +28,7 @@ const DynamicLayout = () => {
     setData(selected);
   };
 
-  const inputFieldData = [
-    { fieldType: "textField", label: "Name", type: "text" },
-    {
-      fieldType: "textArea",
-      label: "Text Area :",
-      type: "textarea",
-      name: "multilineInput",
-      placeholder: "Enter multiple lines of text here",
-    },
-    {
-      fieldType: "dropDown",
-      label: "Select :",
-      type: "select",
-      option: ["option1", "option2", "option3"],
-    },
-    {
-      fieldType: "dropDown",
-      label: "Select :",
-      type: "select",
-      option: ["option1", "option2", "option3"],
-    },
-    { fieldType: "checkBox", label: "Check Me", type: "checkBox" },
-  ];
-
-  const handleSubmit = () => {
+  const handleWorkFLowCreate = () => {
     const finalData = {
       name: dynamicForm,
       form_sections: {
@@ -61,7 +38,8 @@ const DynamicLayout = () => {
       },
     };
     setmainData(finalData);
-    dispatch(createWorkFlow(finalData)).then((value) => {
+    dispatch(createWorkFlow(finalData))
+      .then((value) => {
         console.log(value);
         console.log("Actions");
       })
@@ -70,11 +48,7 @@ const DynamicLayout = () => {
       });
   };
 
-  const handleDynamicForm = (event) => {
-    setDynamicForm(event.target.value);
-  };
-
-  const handleClick = () => {
+  const handleCretePop = () => {
     if (!addSec) {
       setError("Create section cannot be empty ");
     } else {
@@ -90,8 +64,7 @@ const DynamicLayout = () => {
     "Checkbox",
     "Radio Button",
   ];
-
-  const text = ["textField", "textArea", "dropDown", "dropDown", "checkBox"];
+  const inputFields = inputFieldData;
 
   return (
     <div className="parent">
@@ -100,10 +73,10 @@ const DynamicLayout = () => {
           <input
             type="text"
             placeholder="Workflow Name"
-            onChange={handleDynamicForm}
+            onChange={(event) => setDynamicForm(event.target.value)}
           ></input>
           <button className="dyn-btn">Dynamic Form</button>
-          <button className="createForm" onClick={() => handleSubmit()}>
+          <button className="createForm" onClick={() => handleWorkFLowCreate()}>
             Create
           </button>
         </header>
@@ -120,7 +93,7 @@ const DynamicLayout = () => {
               <button
                 className="add-btn"
                 key={index}
-                onClick={() => addSection(inputFieldData[index])}
+                onClick={() => addSection(inputFields[index])}
               >
                 {item}
               </button>
@@ -146,7 +119,7 @@ const DynamicLayout = () => {
         <Popup
           handleChange={setAddSec}
           handlePop={setSectionAdd}
-          handleClick={handleClick}
+          handleClick={handleCretePop}
         />
       )}
     </div>
@@ -154,5 +127,3 @@ const DynamicLayout = () => {
 };
 
 export default DynamicLayout;
-
-const Data = { name: "DynamicForm" };

@@ -1,29 +1,24 @@
-const DynamicData = [
-  {
-    fieldType: "textField",
-    name: "name",
-    type: "text",
-    placeholder: "Name",
-    inputValidations: {
-      required: "Enter the name",
-    },
-  },
+export const inputFieldData = [
+  { fieldType: "textField", label: "Name", type: "text" },
   {
     fieldType: "textArea",
-    name: "departments",
-    option: "Select Departments",
-    data: dept,
-    inputValidations: {
-      required: "Please select a department",
-    },
+    label: "Text Area :",
+    type: "textarea",
+    name: "multilineInput",
+    placeholder: "Enter multiple lines of text here",
   },
   {
-    fieldType: "selectdeptField",
-    name: "departments",
-    option: "Select Departments",
-    data: dept,
-    inputValidations: {
-      required: "Please select a department",
-    },
+    fieldType: "dropDown",
+    label: "Select :",
+    type: "select",
+    option: ["option1", "option2", "option3"],
   },
+  {
+    fieldType: "dropDown",
+    label: "Select :",
+    type: "select",
+    option: ["option1", "option2", "option3"],
+  },
+  { fieldType: "checkBox", label: "Check Me", type: "checkBox" },
+  { fieldType: "radioButton", label: "Radio Button", type: "Radio Button" },
 ];

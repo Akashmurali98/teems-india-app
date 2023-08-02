@@ -64,9 +64,10 @@ const CreateUser = () => {
     const isAlphabet = /[a-zA-Z]/.test(value);
     const isNumeric = /[0-9]/.test(value);
     const isspecialCharac = /[!@#$%^&*]/.test(value);
-    return isAlphabet && isNumeric && isspecialCharac
-      ? true
-      : "Password required atleast one alphabet,special character and number ";
+    return (
+      (isAlphabet && isNumeric && isspecialCharac) ||
+      "Password required atleast one alphabet,special character and number "
+    );
   };
 
   const checkConfirmPassword = (value) => {
