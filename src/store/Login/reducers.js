@@ -9,7 +9,8 @@ const userInfoSlice = createSlice({
   initialState,
   reducers: {
     currentuser: (state, action) => {
-      state.userDetails = action.payload;
+      const data = action.payload;
+      state.userDetails = data.roles[0];
     },
   },
 });

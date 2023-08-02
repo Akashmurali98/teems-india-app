@@ -20,5 +20,13 @@ h2 {
   background-color: #4cae4c;
   color: white;
   position: unset;
-  padding: 15px 30px;
+  padding: 10px 15px;
+  margin-left: 10px;
+}
+
+.backward {
+  background-color: #2e6da4;
+  margin-left: 8px;
+  left: 20px;
+  padding: 10px 15px;
 }

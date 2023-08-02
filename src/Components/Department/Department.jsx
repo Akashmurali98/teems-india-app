@@ -8,8 +8,8 @@ import {
   deletedept as deleteDept,
   listdept as listDept,
 } from "../../store/Department/action";
-import { selectFormData } from "../../store/Department/Reducers";
-import "../../Css/DeptList.css";
+import { selectFormData } from "../../store/Department/reducers";
+import "../../assets/Css/DeptList.css";
 
 const DepartmentList = () => {
   const navigate = useNavigate();

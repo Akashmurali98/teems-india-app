@@ -1,131 +1,27 @@
-import axios from "axios";
-import Swal from "sweetalert2";
+import BaseApi from "./Base";
 
-import { setLoader } from "../store/main/Reducers";
-
-class UsersApi {
+class UsersApi extends BaseApi {
   constructor(dispatch) {
+    super();
     this.dispatch = dispatch;
   }
   createUsers(data) {
-    const token = sessionStorage.getItem("token");
-    this.dispatch(setLoader(true));
     const updatedData = {
       ...data,
       roles: [parseInt(data.roles)],
       departments: [parseInt(data.departments)],
     };
-    const {
-      name,
-      email,
-      username,
-      password,
-      is_active,
-      is_admin,
-      roles,
-      departments,
-    } = updatedData;
-
-    return new Promise((resolve) => {
-      axios
-        .post(
-          `/dev/api/user`,
-          {
-            name: name,
-            email: email,
-            username: username,
-            password: password,
-            is_active: is_active,
-            is_admin: is_admin,
-            roles: roles,
-            departments: departments,
-          },
-          {
-            headers: {
-              Accept: "*/*",
-              Authorization: `Bearer ${token}`,
-            },
-          }
-        )
-        .then(
-          (response) => {
-            resolve(response.data.data);
-          },
-          (error) => {
-            console.log(error);
-          }
-        )
-        .finally(() => {
-          this.dispatch(setLoader(false));
-        });
-    });
+    return this.post("user", this.dispatch, updatedData);
   }
 
-  listUsers() { 
-    const token = sessionStorage.getItem("token");
-    this.dispatch(setLoader(true));
-
-    return new Promise((resolve) => {
-      axios
-        .get("/dev/api/user", {
-          headers: {
-            Accept: "*/*",
-            Authorization: `Bearer ${token}`,
-          },
-        })
-        .then((response) => {
-          resolve(response.data.data);
-        })
-        .catch((error) => {
-          console.log(error);
-        })
-        .finally(() => {
-          this.dispatch(setLoader(false));
-        });
-    });
+  listUsers() {
+    return this.get("user", this.dispatch);
   }
 
-  DeleteUser(selectedId) {
-    const token = sessionStorage.getItem("token");
-    console.log();
-    return new Promise((resolve) => {
-      Swal.fire({
-        title: "Are you sure?",
-        text: "You won't be able to revert this!",
-        icon: "warning",
-        showCancelButton: true,
-        confirmButtonColor: "#3085d6",
-        cancelButtonColor: "#d33",
-        confirmButtonText: "Yes   ",
-      }).then((result) => {
-        if (result.isConfirmed) {
-          const token = sessionStorage.getItem("token");
-          axios
-            .delete(`dev/api/user/${selectedId}`, {
-              headers: {
-                Accept: "*/*",
-                Authorization: `Bearer ${token}`,
-              },
-            })
-            .then((response) => {
-              resolve(selectedId);
-              Swal.fire("Deleted!", "The role has been deleted.", "success");
-            })
-            .catch((error) => {
-              console.error(error);
-              Swal.fire(
-                "Error",
-                "An error occurred while deleting the role.",
-                "error"
-              );
-            });
-        }
-      });
-    });
+  deleteUser(selectedId) {
+    return this.delete(`user/${selectedId}`, this.dispatch, selectedId);
   }
   editUsers(data) {
-    const token = sessionStorage.getItem("token");
-    this.dispatch(setLoader(true));
     const updatedData = {
       ...data,
       roles: [parseInt(data.roles)],
@@ -133,76 +29,12 @@ class UsersApi {
       id: parseInt(data.id),
     };
 
-    const {
-      name,
-      email,
-      is_active,
-      is_admin,
-      roles,
-      departments,
-      id,
-      password,
-    } = updatedData;
-    console.log(id);
-    return new Promise((resolve) => {
-      axios
-        .patch(
-          `/dev/api/user/${id}`,
-          {
-            name: name,
-            email: email,
-            is_active: is_active,
-            is_admin: is_admin,
-            roles: roles,
-            departments: departments,
-            password: password,
-          },
-          {
-            headers: {
-              Accept: "*/*",
-              Authorization: `Bearer ${token}`,
-            },
-          }
-        )
-        .then(
-          (response) => {
-            resolve(response.data.data);
-            console.log(response);
-          },
-          (error) => {
-            console.log(error);
-          }
-        )
-        .finally(() => {
-          this.dispatch(setLoader(false));
-        });
-    });
+    return this.patch(`user/${updatedData.id}`, this.dispatch, updatedData);
+
   }
 
   viewUsers(selectedId) {
-    const token = sessionStorage.getItem("token");
-    this.dispatch(setLoader(true));
-
-    return new Promise((resolve) => {
-      axios
-        .get(`/dev/api/user/${selectedId}`, {
-          headers: {
-            Accept: "*/*",
-            Authorization: `Bearer ${token}`,
-          },
-        })
-        .then(
-          (response) => {
-            resolve(response.data.data);
-          },
-          (error) => {
-            console.log(error);
-          }
-        )
-        .finally(() => {
-          this.dispatch(setLoader(false));
-        });
-    });
+    return this.get(`user/${selectedId}`, this.dispatch);
   }
 }
 

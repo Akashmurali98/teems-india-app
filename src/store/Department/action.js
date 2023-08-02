@@ -1,22 +1,32 @@
 import DeptApi from "../../Service/Dept.js";
-import { createDept, deleteDept, viewDept, listDept } from "./Reducers.js";
+import { createDept, deleteDept, viewDept, listDept } from "./reducers.js";
 
 export const listdept = (data) => (dispatch) => {
   const deptApiObj = new DeptApi(dispatch);
-  deptApiObj
-    .listDept()
-    .then((value) => {
-      dispatch(listDept(value));
-    })
-    .catch((error) => {
-      console.error(error);
-    });
+  return new Promise(() => {
+    deptApiObj
+      .listDept()
+      .then((value) => {
+        dispatch(listDept(value));
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  });
 };
 
 export const createdept = (data) => (dispatch) => {
   const rolesApiObj = new DeptApi(dispatch);
-  rolesApiObj.createDept(data).then((value) => {
-    dispatch(createDept(value));
+  return new Promise((resolve) => {
+    rolesApiObj
+      .createDept(data)
+      .then((value) => {
+        dispatch(createDept(value));
+        resolve(value);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   });
 };
 

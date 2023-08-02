@@ -1,0 +1,42 @@
+.bodyPopUp input[type="text"] {
+  width: 98%;
+  margin: 2px;
+}
+
+.popUp header {
+}
+
+.popUp {
+  border-radius: 10px;
+  position: absolute;
+  top: 100px;
+  left: 200px;
+  width: 70%;
+  height: 300px;
+}
+
+.twoSelection {
+  margin-top: 10px;
+  font-weight: 800;
+  font-size:x-large;  
+}
+
+.popUp img {
+  width: 98%;
+  height: 200px;
+}
+
+.cross {
+  float: right;
+  margin-right: 10px;
+  cursor: pointer;
+}
+
+.pop-btn {
+  /* float: right; */
+  position: absolute;
+  left: 850px;
+  width: 90px;
+
+
+}

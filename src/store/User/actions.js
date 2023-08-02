@@ -1,16 +1,16 @@
 import UsersApi from "../../Service/Users";
 import {
   listUser,
-  deleteUser as deleteusers,
+  deleteUser,
   editUser as editUsers,
   viewUser as viewUsers,
   createUser,
-} from "./Reducers";
+} from "./reducers";
 
 export const list = () => (dispatch) => {
   const usersApiObj = new UsersApi(dispatch);
   usersApiObj
-    .ListUser()
+    .listUsers()
     .then((value) => {
       dispatch(listUser(value));
     })
@@ -34,10 +34,10 @@ export const view = (id) => (dispatch) => {
   });
 };
 
-export const deleteUser = (data) => (dispatch) => {
+export const userDelete = (data) => (dispatch) => {
   const usersApiObj = new UsersApi(dispatch);
   usersApiObj
-    .DeleteUser(data)
+    .deleteUser(data)
     .then((value) => {
       dispatch(deleteUser(value));
     })

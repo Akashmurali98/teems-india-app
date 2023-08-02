@@ -4,11 +4,12 @@ import React, { useEffect, useState } from "react";
 
 import view from "../../assets/Images/visibility.png";
 import deleted from "../../assets/Images//delete.png";
-import { selectFormData } from "../../store/Role/Reducers";
+import { selectFormData } from "../../store/Role/reducers";
 import {
   deleterole as deleteRole,
   listrole as listRole,
 } from "../../store/Role/actions";
+
 import "../../assets/Css/RolesList.css";
 
 const RoleList = () => {

@@ -1,5 +1,5 @@
 import axios from "axios";
-import { setLoader } from "../store/main/Reducers";
+import { setLoader } from "../store/main/reducers";
 
 class LoginApi {
   constructor(dispatch) {
@@ -24,9 +24,11 @@ class LoginApi {
           }
         )
         .then((response) => {
-          const token = response.data.data.token;
+          const data = response?.data?.data?.roles[0]?.name;
+          const token = response?.data?.data?.token;
+          sessionStorage.setItem("userDetails", data);
           sessionStorage.setItem("token", token);
-          resolve(token);
+          resolve(response?.data?.data);
         })
         .catch((error) => {
           console.log(error);
