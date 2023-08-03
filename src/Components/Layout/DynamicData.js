@@ -20,5 +20,5 @@ export const inputFieldData = [
     option: ["option1", "option2", "option3"],
   },
   { fieldType: "checkBox", label: "Check Me", type: "checkBox" },
-  { fieldType: "radioButton", label: "Radio Button", type: "Radio Button" },
+  { fieldType: "radioButton", label: "Radio Button", type: "radioButton" },
 ];

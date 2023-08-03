@@ -13,7 +13,6 @@ const Header = () => {
   };
   let token = sessionStorage.getItem("token");
   let userName = sessionStorage.getItem("userDetails");
-  const status = token ? true : false;
 
   return (
     <div className="Header">
@@ -37,6 +36,9 @@ const Header = () => {
       </Link>
       <Link to="/dynamicLayout  ">
         <span className="head-text-right">Dynamic Layout </span>
+      </Link>
+      <Link to="/dynamicList  ">
+        <span className="head-text-right">Dynamic List </span>
       </Link>
     </div>
   );

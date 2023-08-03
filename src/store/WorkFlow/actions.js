@@ -14,3 +14,18 @@ export const createWorkFlow = (data) => (dispatch) => {
       });
   });
 };
+
+export const listCreateFLow = () => (dispatch) => {
+  const workFlow = new WorkFlowApi(dispatch);
+  return new Promise((resolve) => {
+    workFlow
+      .listWorkFLow()
+      .then((value) => {
+        resolve(value);
+        console.log(value)
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  }); 
+}
