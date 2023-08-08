@@ -13,6 +13,13 @@ class WorkFlowApi extends BaseApi {
   listWorkFLow() {
     return this.get("workflow?view=All", this.dispatch);
   }
+
+  editWorkFlow(selectedId, finalData) {
+    return this.patch(`workflow/${selectedId}`, this.dispatch, finalData);
+  }
+  selectWorkFlow(selectedId) {
+    return this.get(`workflow/${selectedId}`, this.dispatch);
+  }
 }
 
 export default WorkFlowApi;

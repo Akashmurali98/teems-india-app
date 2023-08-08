@@ -5,7 +5,7 @@ const CheckBox = () => {
     <>
       <label>
         Check Me
-        <input type="checkbox"></input>
+        <input type="checkbox" readOnly></input>
       </label>
     </>
   );

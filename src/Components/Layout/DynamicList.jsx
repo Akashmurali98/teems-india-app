@@ -1,14 +1,19 @@
 import React, { useEffect, useState } from "react";
-import "../../assets/Css/DynamicList.css";
 import { useDispatch } from "react-redux";
-import { listCreateFLow } from "../../store/WorkFlow/actions";
+import { listWorkFLow } from "../../store/WorkFlow/actions";
+import { useNavigate } from "react-router-dom";
+
+import "../../assets/Css/DynamicList.css";
 
 const DynamicList = () => {
   const [data, setData] = useState([]);
+  const navigate = useNavigate();
   const dispatch = useDispatch();
+
   useEffect(() => {
-    dispatch(listCreateFLow())
+    dispatch(listWorkFLow())
       .then((value) => {
+        console.log(value);
         setData(value);
       })
       .catch((error) => {
@@ -20,9 +25,17 @@ const DynamicList = () => {
       <div className="listParent">
         {data.map((item, index) => {
           return (
-            <span className="list" key={index}>
+            <span
+              className="list"
+              key={index}
+              onClick={() => navigate(`/workFlow/edit/${item.id}`)}
+            >
               &#916; <br />
               {item.name}
+              <br />
+              Active :<input type="checkbox" checked={item.is_active} />
+              <br />
+              Publish :<input type="checkbox" checked={item.is_published} />
             </span>
           );
         })}

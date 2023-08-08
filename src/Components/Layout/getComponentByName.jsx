@@ -6,16 +6,16 @@ import CheckBox from "./Checkbox";
 import RadioButton from "./RadioButton";
 
 const componentMap = {
-  textField: TextField,
-  textArea: TextArea,
-  dropDown: DropDown,
+  text: TextField,
+  textarea: TextArea,
+  select: DropDown,
   checkBox: CheckBox,
   radioButton: RadioButton,
 };
 
 export const getComponentByName = (item) => {
   const Component = componentMap[item];
-
+  console.log(item);
   if (Component) {
     return <Component field={item}></Component>;
   }
