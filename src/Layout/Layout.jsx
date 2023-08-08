@@ -19,6 +19,7 @@ import PageNotFound from "../Shared/PageNotFound";
 import DynamicLayout from "../Components/Layout/DynamicLayout";
 
 import "../assets/Css/layout.css";
+import DynamicList from "../Components/Layout/DynamicList";
 
 const Layout = () => {
   const loaderStatus = useSelector(selectStatus);
@@ -50,6 +51,7 @@ const Layout = () => {
                 <Route path="/userlist/create/:id" element={<CreateUser />} />
                 <Route path="*" element={<PageNotFound />} />
                 <Route path="/dynamicLayout" element={<DynamicLayout />} />
+                <Route path="/dynamicList" element={<DynamicList />} />
               </Route>
             </Routes>
           </Provider>

@@ -6,28 +6,12 @@ class WorkFlowApi extends BaseApi {
     this.dispatch = dispatch;
   }
 
-  createWorkFLow(dataa) {
-    const data = {
-      name: "Test PDFW",
-      form_sections: [
-        {
-          name: "Basic",
-          column_type: "2",
-          fields: [
-            {
-              label: "Name",
-              type: "TEXT",
-            },
-            {
-              label: "State",
-              type: "DROPDOWN",
-              data_type_value: 1,
-            },
-          ],
-        },
-      ],
-    };
+  createWorkFLow(data) {
     return this.post("workflow", this.dispatch, data);
+  }
+
+  listWorkFLow() {
+    return this.get("workflow?view=All", this.dispatch);
   }
 }
 

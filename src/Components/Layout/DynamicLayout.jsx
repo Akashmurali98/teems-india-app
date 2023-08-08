@@ -31,11 +31,7 @@ const DynamicLayout = () => {
   const handleWorkFLowCreate = () => {
     const finalData = {
       name: dynamicForm,
-      form_sections: {
-        name: addSec,
-        column_type: "2",
-        fields: data,
-      },
+      form_sections: [{ name: addSec, column_type: "2", fields: data }],
     };
     setmainData(finalData);
     dispatch(createWorkFlow(finalData))
