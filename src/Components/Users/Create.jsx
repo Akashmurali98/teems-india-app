@@ -10,6 +10,7 @@ import { listdept as Dept } from "../../store/Department/action";
 import { getComponentByType } from "../../InputField/GetComponentByType";
 import { inputsFields } from "../../InputField/Data";
 import Button from "../../Shared/Button";
+
 import "../../assets/Css/CreateUser.css";
 
 const CreateUser = () => {

@@ -9,7 +9,9 @@ const Popup = (props) => {
       <div className="popUp">
         <header>
           {" "}
-          ** Add Section
+          <span className="Head">
+           Add Section
+           </span>
           <span className="cross" onClick={() => props.handlePop(false)}>
             &#10006;
           </span>
@@ -26,7 +28,7 @@ const Popup = (props) => {
           </form>
         </div>
 
-        <div className="twoSelection">** Two Column Selection</div>
+        <div className="twoSelection"> Two Column Selection</div>
         <img src={inputImage}></img>
         <br></br>
         <button className="pop-btn" onClick={() => props.handleClick()}>

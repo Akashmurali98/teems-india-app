@@ -34,10 +34,10 @@ const Header = () => {
       <Link to="/userlist  ">
         <span className="head-text-right">Users </span>
       </Link>
-      <Link to="/dynamicLayout  ">
+      <Link to="/workflow/create">
         <span className="head-text-right">Dynamic Layout </span>
       </Link>
-      <Link to="/dynamicList  ">
+      <Link to="/workFlow">
         <span className="head-text-right">Dynamic List </span>
       </Link>
     </div>

@@ -50,8 +50,9 @@ const Layout = () => {
                 <Route path="/userlist/create" element={<CreateUser />} />
                 <Route path="/userlist/create/:id" element={<CreateUser />} />
                 <Route path="*" element={<PageNotFound />} />
-                <Route path="/dynamicLayout" element={<DynamicLayout />} />
-                <Route path="/dynamicList" element={<DynamicList />} />
+                <Route path="/workflow/create" element={<DynamicLayout />} />
+                <Route path="/workFlow/edit/:id" element={<DynamicLayout />} />
+                <Route path="/workFlow" element={<DynamicList />} />
               </Route>
             </Routes>
           </Provider>

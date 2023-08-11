@@ -18,7 +18,7 @@ class BaseApi {
     dispatch(setLoader(true));
     const { baseUrl, headers } = this.requestConfig;
     const url = `${baseUrl}${endpoint}`;
-    console.log(data)
+    console.log(data);
     return new Promise((resolve) => {
       axios({
         method: method,
@@ -32,6 +32,7 @@ class BaseApi {
               resolve(data);
             } else {
               resolve(response?.data?.data);
+              console.log(response.data.data);
             }
           },
           (error) => {
