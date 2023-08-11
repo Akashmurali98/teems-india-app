@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from "react";
-import { useDispatch } from "react-redux";
 import { listWorkFLow } from "../../store/WorkFlow/actions";
+
 import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
 
 import "../../assets/Css/DynamicList.css";
 
@@ -13,7 +14,6 @@ const DynamicList = () => {
   useEffect(() => {
     dispatch(listWorkFLow())
       .then((value) => {
-        console.log(value);
         setData(value);
       })
       .catch((error) => {

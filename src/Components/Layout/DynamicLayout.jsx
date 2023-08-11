@@ -1,4 +1,3 @@
-import React, { useEffect, useState } from "react";
 import Popup from "./PopUp";
 import { getComponentByName } from "./getComponentByName";
 import {
@@ -6,14 +5,17 @@ import {
   editWorkFLow,
   selectWorkFLow,
 } from "../../store/WorkFlow/actions";
-import { useDispatch } from "react-redux";
 import edit from "../../assets/Images/create.png";
 import deletee from "../../assets/Images/delete.png";
 import { inputFieldData } from "./DynamicData";
+import React, { useEffect, useState } from "react";
 
-import "../../assets/Css/DynamicLayout.css";
+import { useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
 import { useForm } from "react-hook-form";
+
+import "../../assets/Css/DynamicLayout.css";
+
 
 const DynamicLayout = () => {
   const [sectionAdd, setSectionAdd] = useState(false);
@@ -37,12 +39,9 @@ const DynamicLayout = () => {
       dispatch(selectWorkFLow(selectedId))
         .then((value) => {
           const { name } = value;
-          console.log(value);
           setValue("dynamicForm", name);
-          setAddSec(value.form_sections[0].name);
-          setData(value.form_sections[0].fields);
-          console.log(value.form_sections[0].fields);
-          console.log(data);
+          setAddSec(value?.form_sections[0]?.name);
+          setData(value?.form_sections[0]?.fields);
         })
         .catch((error) => {
           console.log(error);
@@ -51,7 +50,6 @@ const DynamicLayout = () => {
   }, []);
 
   const addSection = (input) => {
-    console.log(data);
     setData((prevData) => [...prevData, input]);
   };
 
